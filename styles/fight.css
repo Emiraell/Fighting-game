@@ -10,7 +10,7 @@ body {
   justify-content: center;
   max-width: 700px;
 }
-.gameSec, .nameSec {
+.gameSec, .playerNameDiv {
   display: flex;
 }
 img {
