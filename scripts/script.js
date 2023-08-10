@@ -11,7 +11,7 @@ let nameEnter = document.getElementById('nameBtn');
 let nameHeader = document.getElementById('nameHeader');
 let p1Name = document.getElementById('p1Name');
 let p2Name = document.getElementById('p2Name');
-
+let outcome = document.getElementById('outcome')
 
 
 let gamePlaying = true;
@@ -26,18 +26,18 @@ let player = [{
   let p1 = player[0]
   let p2 = player[1]
 
-  renderGame ()
+  renderGame (p1, p2)
 
-function renderGame () {
+function renderGame (player1, player2) {
 p1Name.innerHTML = p1.name
 p2Name.innerHTML = p2.name
 p1Power.innerHTML = p1.health
 p2Power.innerHTML = p2.health
 
-//if (player1 <= 0 || player2 <= 0) {
-  //gamePlaying = false
-  //winner ();
-//}
+if (player1.health <= 0 || player2.health <= 0) {
+  gamePlaying = false
+    winner (p1,p2);
+}
 }
 
 
@@ -45,14 +45,39 @@ const attack = (attacker, enemy) => {
   let damage = Math.ceil(Math.random() * 10)
   console.log(damage)
   
-  if (attacker > 0 && enemy > 0) {
-    enemy -= damage
-    console.log(enemy)
-    renderGame ()
+  if (attacker.health > 0 && enemy.health > 0) {
+    enemy.health -= damage
+    console.log(enemy.health)
+    if (enemy.health < 0) {
+      enemy.health = 0
+    }
+    renderGame (p1,p2)
   }
 }
 
-attack (p1.health, p2.health)
+const heal = (playerr) => {
+  let recover = Math.ceil(Math.random () * 5)
+  console.log(recover)
+  playerr.health += recover
+  //console.log (playerr.health)
+  if (playerr.health > 100) {
+    playerr.health = 100
+    //console.log(playerr.health)
+  }
+}
+
+const winner = (pl1, pl2) => {
+  if (gamePlaying === false && pl2.health < 1) {
+    outcome.innerHTML = `${p1.name} wins`
+  } else if  (gamePlaying === false && pl1.health < 1) {
+    outcome.innerHTML = `${p2.name} wins`
+  } 
+}
+
+attack (p1, p2)
+heal (p2)
+
+renderGame (p1,p2)
 
 
 /*function getnameInp () {
