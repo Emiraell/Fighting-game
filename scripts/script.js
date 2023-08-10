@@ -16,10 +16,10 @@ let outcome = document.getElementById('outcome')
 
 let gamePlaying = true;
 let player = [{
-  name: 'computer1',
+  name: 'excel',
   health: 100
 }, {
-    name: 'computer2',
+    name: 'nonso',
     health: 100,
   }];
 
@@ -34,16 +34,24 @@ p2Name.innerHTML = p2.name
 p1Power.innerHTML = p1.health
 p2Power.innerHTML = p2.health
 
-if (player1.health <= 0 || player2.health <= 0) {
+if (player1.health === 0 || player2.health === 0) {
   gamePlaying = false
-    winner (p1,p2);
+
+  if (player2.health < 1) {
+    outcome.innerHTML = `${player1.name} wins`
+  } else if  (player1.health < 1) {
+    outcome.innerHTML = `${player2.name} wins`
+  } else {
+    outcome.innerHTML = `TIE`
+  }
+  //winner (p1,p2);
 }
 }
 
 
 const attack = (attacker, enemy) => {
   let damage = Math.ceil(Math.random() * 10)
-  console.log(damage)
+  //console.log(damage)
   
   if (attacker.health > 0 && enemy.health > 0) {
     enemy.health -= damage
@@ -57,28 +65,49 @@ const attack = (attacker, enemy) => {
 
 const heal = (playerr) => {
   let recover = Math.ceil(Math.random () * 5)
-  console.log(recover)
+  //console.log(recover)
   playerr.health += recover
-  //console.log (playerr.health)
+  console.log (playerr.health)
   if (playerr.health > 100) {
     playerr.health = 100
-    //console.log(playerr.health)
+    console.log(playerr.health)
+    
   }
+  renderGame (p1,p2)
 }
 
-const winner = (pl1, pl2) => {
+/*const winner = (pl1, pl2) => {
   if (gamePlaying === false && pl2.health < 1) {
     outcome.innerHTML = `${p1.name} wins`
   } else if  (gamePlaying === false && pl1.health < 1) {
     outcome.innerHTML = `${p2.name} wins`
   } 
-}
+}*/
 
-attack (p1, p2)
-heal (p2)
+document.addEventListener('keydown', (events) => {
+  if (events.key === 'q' && gamePlaying === true && p2.health > 0) {
+    attack (p1, p2)
+  }
+})
 
-renderGame (p1,p2)
+document.addEventListener('keydown', (events) => {
+  if (events.key === 'o' && gamePlaying === true && p1.health > 0) {
+    attack (p2, p1)
+  }
+})
 
+document.addEventListener('keydown', (events) => {
+  if (events.key === 'a' && gamePlaying === true && p1.health > 0 ) {
+    heal (p1);
+  }
+})
+
+
+document.addEventListener('keydown', (events) => {
+  if (events.key === 'k'  && gamePlaying === true && p2.health > 0) {
+    heal (p2);
+  }
+})
 
 /*function getnameInp () {
 
