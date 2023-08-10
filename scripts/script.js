@@ -59,7 +59,22 @@ const attack = (attacker, enemy) => {
     if (enemy.health < 0) {
       enemy.health = 0
     }
+    
     renderGame (p1,p2)
+  }
+}
+
+const superAttack = (attacker, enemy) => {
+  let superStrike = Math.ceil((Math.random () * 10) + 10)
+  console.log(superStrike)
+
+  if (attacker.health > 0 && enemy.health > 0) {
+    enemy.health -= superStrike
+
+    if (enemy.health < 0) {
+      enemy.health = 0
+    }
+    renderGame (p1, p2)
   }
 }
 
@@ -91,8 +106,8 @@ document.addEventListener('keydown', (events) => {
 })
 
 document.addEventListener('keydown', (events) => {
-  if (events.key === 'o' && gamePlaying === true && p1.health > 0) {
-    attack (p2, p1)
+  if (events.key === 'z' && gamePlaying === true && p2.health > 0) {
+    superAttack (p1, p2)
   }
 })
 
@@ -102,6 +117,21 @@ document.addEventListener('keydown', (events) => {
   }
 })
 
+
+
+
+
+document.addEventListener('keydown', (events) => {
+  if (events.key === 'o' && gamePlaying === true && p1.health > 0) {
+    attack (p2, p1)
+  }
+})
+
+document.addEventListener('keydown', (events) => {
+  if (events.key === 'm' && gamePlaying === true && p1.health > 0) {
+    superAttack (p2, p1)
+  }
+})
 
 document.addEventListener('keydown', (events) => {
   if (events.key === 'k'  && gamePlaying === true && p2.health > 0) {
