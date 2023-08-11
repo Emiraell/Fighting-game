@@ -70,11 +70,13 @@ const attack = (attacker, enemy) => {
 }
 
 
-let superDamage = 0;
+let superDamageAmt = 0;
 let superDamaged = false
+
 const superAttack = (attacker, enemy) => {
+  
   let superStrike = Math.ceil((Math.random () * 10) + 10)
-  superDamage = superStrike
+  superDamageAmt = superStrike
   //console.log(superStrike)
 
   if (attacker.health > 0 && enemy.health > 0) {
@@ -95,24 +97,25 @@ const defend = (attacker, defender) => {
   if (attacker.health > 0 && defender.health > 0 && damaged === true) {
     defender.health += damageAmt
     damaged = false
-    renderGame()
-  } else if (attacker.health > 0 && defender.health > 0 && superDamaged === true)
-  defender.health += superDamage
+  } else if (attacker.health > 0 && defender.health > 0 && superDamaged === true) {
+  defender.health += superDamageAmt
   superDamaged = false
+  }
   renderGame ()
 }
 
 
 const heal = (playerr) => {
-  let recover = Math.ceil(Math.random () * 8)
+
+  let recoverAmt = Math.ceil(Math.random () * 8)
   //console.log(recover)
-  playerr.health += recover
-  console.log (playerr.health)
+  playerr.health += recoverAmt
+  //console.log (playerr.health)
   if (playerr.health > 100) {
     playerr.health = 100
-    console.log(playerr.health)
-    
+    //console.log(playerr.health) 
   }
+  
   renderGame (p1,p2)
 }
 
