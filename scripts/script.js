@@ -104,7 +104,7 @@ const defend = (attacker, defender) => {
 
 
 const heal = (playerr) => {
-  let recover = Math.ceil(Math.random () * 5)
+  let recover = Math.ceil(Math.random () * 8)
   //console.log(recover)
   playerr.health += recover
   console.log (playerr.health)
