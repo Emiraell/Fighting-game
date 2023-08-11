@@ -125,7 +125,7 @@ const heal = (playerr) => {
 }*/
 
 document.addEventListener('keyup', (events) => {
-  if (events.key === 'q' && gamePlaying === true && p2.health > 0) {
+  if (events.key === 'w' && gamePlaying === true && p2.health > 0) {
     attack (p1, p2)
   }
 })
@@ -143,7 +143,7 @@ document.addEventListener('keyup', (events) => {
 })
 
 document.addEventListener('keydown', (events) => {
-  if (events.key === 's' && gamePlaying === true && p2.health > 0) {
+  if (events.key === 'd' && gamePlaying === true && p2.health > 0) {
     defend (p2, p1)
   }
 })
@@ -151,7 +151,7 @@ document.addEventListener('keydown', (events) => {
 
 
 document.addEventListener('keyup', (events) => {
-  if (events.key === 'o' && gamePlaying === true && p1.health > 0) {
+  if (events.key === 'i' && gamePlaying === true && p1.health > 0) {
     attack (p2, p1)
   }
 })
@@ -163,8 +163,14 @@ document.addEventListener('keyup', (events) => {
 })
 
 document.addEventListener('keyup', (events) => {
-  if (events.key === 'k'  && gamePlaying === true && p2.health > 0) {
+  if (events.key === 'j'  && gamePlaying === true && p2.health > 0) {
     heal (p2);
+  }
+})
+
+document.addEventListener('keydown', (events) => {
+  if (events.key === 'k' && gamePlaying === true && p2.health > 0) {
+    defend (p1, p2)
   }
 })
 
