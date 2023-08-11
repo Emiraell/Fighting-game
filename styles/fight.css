@@ -7,13 +7,27 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   max-width: 700px;
 }
 .gameSec, .playerNameDiv {
   display: flex;
 }
 img {
-  height: 200px;
-  width: 200px;
+  height: 100px;
+  width: 100px;
+}
+.horizontalBtn {
+  display: flex;
+}
+.p1Btns button, .p2Btns button {
+  margin: 5px;
+  margin-left: 15px;
+  width: 60px;
+  height: 40px;
+  border-radius: 30px;
+  border: solid 2px brown;
+}
+
+.verticalBtn {
+  margin-left: 35px;
 }

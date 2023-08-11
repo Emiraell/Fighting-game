@@ -26,7 +26,6 @@
         
       </div>
       <div id="p2Name">
-        
       </div>
     </div>
   </section>
@@ -35,22 +34,26 @@
     <div>
       <div id="p1Power"></div>
       <img src="https://i.gifer.com/origin/00/0019f6845ceaa9347b881ccbe8f5644a_w200.gif" alt="">
-      <div id="p1ActionBtns">
-        <div > <button id="p1Attack"> W: Strike</button> </div>
-        <div > <button id="p1Heal"> A: Heal</button> </div>
-        <div > <button id="p1Super"> Z: SuperStrike</button> </div>
-        <div > <button id="p1defend"> D: Defend</button></div>
+      <div id="p1ActionBtns" class="p1Btns">
+        <div class="verticalBtn"> <button id="p1Attack" onclick=" strike (p1, p2)"> W: <br> Strike</button> </div>
+        <div class="horizontalBtn">
+          <button id="p1Heal" onclick=" heal (p1)"> A: <br> Heal</button>
+          <button id="p1defend" onclick=" defend (p2, p1)"> D: <br> Defend</button>
+        </div>
+        <div class="verticalBtn"><button id="p1Super" onclick=" superStrike (p1, p2)"> Z: <br> sStrike</button> </div>
       </div>
     </div>
 
     <div>
       <div id="p2Power"></div>
       <img src="https://i.gifer.com/origin/00/0019f6845ceaa9347b881ccbe8f5644a_w200.gif" alt="">
-      <div id="p2ActionBtns">
-        <div > <button id="p2Attack"> I: Strike </button> </div>
-        <div > <button id="p2heal"> J: Heal </button> </div>
-        <div > <button id="p2Super"> M SuperStrike </button> </div>
-        <div > <button id="p2defend"> k:  Defend </button></div>
+      <div id="p2ActionBtns" class="p2Btns">
+        <div class="verticalBtn"> <button id="p2Attack" onclick=" strike (p2, p1)"> I: <br> Strike </button> </div>
+        <div class="horizontalBtn">
+          <button id="p2heal" onclick=" heal (p2)"> J: <br> Heal </button>
+          <button id="p2defend" onclick=" defend (p1, p2)"> k: <br> Defend </button>
+        </div>
+        <div class="verticalBtn"> <button id="p2Super" onclick=" superStrike (p2, p1)"> M: <br> sStrike </button> </div>
       </div>
       
     </div>

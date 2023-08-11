@@ -50,7 +50,7 @@ if (player1.health === 0 || player2.health === 0) {
 
 let damageAmt = 0;
 let damaged = false
-const attack = (attacker, enemy) => {
+const strike = (attacker, enemy) => {
   let damage = Math.ceil(Math.random() * 10)
   damageAmt = damage
   //console.log(damage)
@@ -73,14 +73,14 @@ const attack = (attacker, enemy) => {
 let superDamageAmt = 0;
 let superDamaged = false
 
-const superAttack = (attacker, enemy) => {
+const superStrike = (attacker, enemy) => {
   
-  let superStrike = Math.ceil((Math.random () * 10) + 10)
-  superDamageAmt = superStrike
-  //console.log(superStrike)
+  let superStrikeAmt = Math.ceil((Math.random () * 10) + 10)
+  superDamageAmt = superStrikeAmt
+  //console.log(superStrikeAmt)
 
   if (attacker.health > 0 && enemy.health > 0) {
-    enemy.health -= superStrike
+    enemy.health -= superStrikeAmt
 
     if (enemy.health < 0) {
       enemy.health = 0
@@ -129,13 +129,13 @@ const heal = (playerr) => {
 
 document.addEventListener('keyup', (events) => {
   if (events.key === 'w' && gamePlaying === true && p2.health > 0) {
-    attack (p1, p2)
+    strike (p1, p2)
   }
 })
 
 document.addEventListener('keyup', (events) => {
   if (events.key === 'z' && gamePlaying === true && p2.health > 0) {
-    superAttack (p1, p2)
+    superStrike (p1, p2)
   }
 })
 
@@ -155,13 +155,13 @@ document.addEventListener('keydown', (events) => {
 
 document.addEventListener('keyup', (events) => {
   if (events.key === 'i' && gamePlaying === true && p1.health > 0) {
-    attack (p2, p1)
+    strike (p2, p1)
   }
 })
 
 document.addEventListener('keyup', (events) => {
   if (events.key === 'm' && gamePlaying === true && p1.health > 0) {
-    superAttack (p2, p1)
+    superStrike (p2, p1)
   }
 })
 
