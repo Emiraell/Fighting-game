@@ -15,6 +15,9 @@ let outcome = document.getElementById('outcome')
 
 
 let gamePlaying = true;
+let healed = false;
+let striked = false;
+let executed = false
 let player = [{
   name: 'excel',
   health: 100
@@ -65,13 +68,15 @@ const strike = (attacker, enemy) => {
     renderGame (p1,p2)
   }
 
-  damaged = true
+  //executed = true;
+  striked = true;
+  damaged = true;
   return damaged
 }
 
 
 let superDamageAmt = 0;
-let superDamaged = false
+let superDamaged = false;
 
 const superStrike = (attacker, enemy) => {
   
@@ -88,20 +93,25 @@ const superStrike = (attacker, enemy) => {
     renderGame (p1, p2)
   }
 
+  //executed = true
+  striked = true;
   superDamaged = true
   return superDamaged
 }
 
 const defend = (attacker, defender) => {
 
-  if (attacker.health > 0 && defender.health > 0 && damaged === true) {
+  if (attacker.health > 0 && defender.health > 0 && damaged === true && striked === true) {
     defender.health += damageAmt
     damaged = false
-  } else if (attacker.health > 0 && defender.health > 0 && superDamaged === true) {
+  } else if (attacker.health > 0 && defender.health > 0 && superDamaged === true && striked == true) {
   defender.health += superDamageAmt
   superDamaged = false
   }
-  renderGame ()
+
+  executed = true
+  striked = false
+  renderGame (p1,p2)
 }
 
 
@@ -110,6 +120,7 @@ const heal = (playerr) => {
   let recoverAmt = Math.ceil(Math.random () * 8)
   //console.log(recover)
   playerr.health += recoverAmt
+  healed = true
   //console.log (playerr.health)
   if (playerr.health > 100) {
     playerr.health = 100
@@ -147,7 +158,11 @@ document.addEventListener('keyup', (events) => {
 
 document.addEventListener('keydown', (events) => {
   if (events.key === 'd' && gamePlaying === true && p2.health > 0) {
-    defend (p2, p1)
+    if (executed = true) {
+      defend (p2, p1)
+      executed = false
+      }
+    //defend (p2, p1)
   }
 })
 
@@ -173,7 +188,10 @@ document.addEventListener('keyup', (events) => {
 
 document.addEventListener('keydown', (events) => {
   if (events.key === 'k' && gamePlaying === true && p2.health > 0) {
+    if (executed === true) {
     defend (p1, p2)
+    executed = false
+    }
   }
 })
 
