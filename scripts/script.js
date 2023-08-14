@@ -68,7 +68,7 @@ const strike = (attacker, enemy) => {
     renderGame (p1,p2)
   }
 
-  //executed = true;
+  executed = true;
   striked = true;
   damaged = true;
   return damaged
@@ -93,7 +93,7 @@ const superStrike = (attacker, enemy) => {
     renderGame (p1, p2)
   }
 
-  //executed = true
+  executed = true
   striked = true;
   superDamaged = true
   return superDamaged
@@ -109,7 +109,7 @@ const defend = (attacker, defender) => {
   superDamaged = false
   }
 
-  executed = true
+  //executed = true
   striked = false
   renderGame (p1,p2)
 }
@@ -158,7 +158,7 @@ document.addEventListener('keyup', (events) => {
 
 document.addEventListener('keydown', (events) => {
   if (events.key === 'd' && gamePlaying === true && p2.health > 0) {
-    if (executed = true) {
+    if (executed === true && p1.health < 100) {
       defend (p2, p1)
       executed = false
       }
@@ -188,7 +188,7 @@ document.addEventListener('keyup', (events) => {
 
 document.addEventListener('keydown', (events) => {
   if (events.key === 'k' && gamePlaying === true && p2.health > 0) {
-    if (executed === true) {
+    if (executed === true && p2.health < 100) {
     defend (p1, p2)
     executed = false
     }
