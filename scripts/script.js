@@ -17,25 +17,27 @@ let outcome = document.getElementById('outcome');
 let gamePlaying = true;
 let healed = false;
 let striked = false;
-let executed = false
+//let executed = false
 
 let player = [{
   name: 'excel',
   health: 100,
-  strike: false,
+  striked: false,
+
 }, {
     name: 'nonso',
     health: 100,
-    strike: false,
+    striked: false,
   }];
 
-  console.log(player)  
+  //console.log(player)  
   let p1 = player[0]
   let p2 = player[1]
 
   renderGame (p1, p2)
 
 function renderGame (player1, player2) {
+
 p1Name.innerHTML = p1.name
 p2Name.innerHTML = p2.name
 p1Power.innerHTML = p1.health
@@ -59,7 +61,7 @@ let damageAmt = 0;
 let damaged = false
 const strike = (attacker, enemy) => {
   let damage = Math.ceil(Math.random() * 10)
-  enemy.damageAmt = damage
+  damageAmt = damage
   //console.log(damage)
   if (attacker.strike === true) {
     attacker.strike = false
@@ -74,9 +76,10 @@ const strike = (attacker, enemy) => {
     
     renderGame (p1,p2)
   }
-  console.log(player)
-  executed = true;
-  striked = true;
+  //console.log(player)
+  //executed = true;
+  //striked = true;
+  healed = false
   damaged = true;
   return damaged
 };
@@ -84,7 +87,7 @@ const strike = (attacker, enemy) => {
 
 let superDamageAmt = 0;
 let superDamaged = false;
-let unstrikedHealth;
+//let unstrikedHealth;
 
 const superStrike = (attacker, enemy) => {
   
@@ -92,41 +95,44 @@ const superStrike = (attacker, enemy) => {
   superDamageAmt = superStrikeAmt
   //console.log(superStrikeAmt)
   if (attacker.strike === true) {
-    attacker.strike = false
+    attacker.striked = false
   }
 
   if (attacker.health > 0 && enemy.health > 0) {
     enemy.health -= superStrikeAmt
-    enemy.strike = true
+    enemy.striked = true
     //enemy.strikedHealth = enemy.health
-    console.log(enemy.strikedHealth)
+    //console.log(enemy.strikedHealth)
 
     if (enemy.health < 0) {
       enemy.health = 0
     }
     renderGame (p1, p2)
   }
-  console.log(player)
-  executed = true
-  striked = true
+  //console.log(player)
+  //executed = true
+  //striked = true
+  healed = false
   superDamaged = true
   return superDamaged
 }
 
 const defend = (attacker, defender) => {
 
-  if (attacker.health > 0 && defender.health > 0 && defender.strike === true && damaged === true && striked === true) {
+  if (defender.strike === true && damaged === true && healed === false) {
     defender.health += damageAmt
     damaged = false
     defender.strike = false
-  } else if (attacker.health > 0 && defender.health > 0 && defender.strike === true && superDamaged === true && striked == true) {
+    striked = false
+  } else if (defender.strike === true && superDamaged === true && healed === false) {
   defender.health += superDamageAmt
   superDamaged = false
   defender.strike = false
+  //striked = false
   }
-
+//console.log(player)
   //executed = true
-  striked = false
+  
   renderGame (p1,p2)
 }
 
@@ -174,11 +180,7 @@ document.addEventListener('keyup', (events) => {
 
 document.addEventListener('keydown', (events) => {
   if (events.key === 'd' && gamePlaying === true && p1.health > 0) {
-    if (executed === true && p1.health < 100) {
-      defend (p2, p1)
-      executed = false
-      }
-    //defend (p2, p1)
+    defend (p2, p1)
   }
 })
 
@@ -204,10 +206,7 @@ document.addEventListener('keyup', (events) => {
 
 document.addEventListener('keydown', (events) => {
   if (events.key === 'k' && gamePlaying === true && p2.health > 0) {
-    if (executed === true && p2.health < 100) {
     defend (p1, p2)
-    executed = false
-    }
   }
 })
 
