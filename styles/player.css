@@ -12,7 +12,7 @@ body {
   color: #f5f9f9;
   max-width: 800px;
   font-family: arial;
-}
+};
 header{
   margin: 15px 0;
 }
@@ -28,7 +28,7 @@ header{
 }
 .nameTittle, .namesDiv {
   width: 200px;
-  justify-content: space-around;
+  justify-content: space-between;
   margin: 15px 0;
 }
 .nameTittle {
@@ -36,7 +36,7 @@ header{
   padding-bottom: 15px;
 }
 input {
-  width: 180px;
+  width: 130px;
   padding: 5px;
   height: 23px;
   border-radius: 20px;
@@ -51,8 +51,11 @@ input {
   background-color: #756217;
   color: white;
 }
+.fightDiv {
+  color: #d02323;
+}
 .nameSec, h3 {
-  margin-left: -40px;
+  margin-left: -10px;
 }
 .gameSec{
   padding-top: 20px;
@@ -61,15 +64,16 @@ input {
   margin-right: 50px;
 }
 .p1Strength, .p2Strength {
-  padding-left: 20px;
+  padding-left: 10px;
   font-weight: bold;
   font-size: 30px;
   font-style: italic;
+  padding-bottom: 10px;
 }
 img {
   height: 80px;
   width: 80px;
-  padding: 20px 0 10px 15px;
+  padding: 20px 0;
 }
 .p1Btns, .p2Btns {
   margin-left: -25px;
@@ -78,14 +82,15 @@ img {
   display: flex;
 }
 .p1Btns button, .p2Btns button {
-  margin: 5px;
   margin-left: 15px;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border-radius: 25px;
   border: solid 2px brown;
+  font-size: 9px;
+  font-weight: bold;
 }
 
 .verticalBtn {
-  margin-left: 35px;
+  margin-left: 27px;
 }

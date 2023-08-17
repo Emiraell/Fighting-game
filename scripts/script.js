@@ -16,14 +16,17 @@ let nameSection = document.getElementById('nameGetter');
 //let p1Header = document.getElementById('p1Header')
 //let p2Header = document.getElementById('p2Header')
 
-//document.getElementById('playerIndicator').hidden = true;
+document.getElementById('playerIndicator').hidden = true;
+
+document.getElementById('playerIndicator').classList.remove('nameTittle')
 
 
 let gamePlaying = true;
 let healed = false;
 //let striked = false;
 //let executed = false
-//localStorage.removeItem('names')
+localStorage.removeItem('player')
+localStorage.removeItem('names')
 let player = JSON.parse(localStorage.getItem('player')) ||
  [{
   name: '',
@@ -43,7 +46,8 @@ let player = JSON.parse(localStorage.getItem('player')) ||
   //renderGame (p1, p2)
 
   function getPlayerNames () {
-//    document.getElementById('playerIndicator').hidden = false;
+    document.getElementById('playerIndicator').hidden = false;
+    document.getElementById('playerIndicator').classList.add('nameTittle')
     //let names = nameInp.value;
     if (nameHeader.innerText === 'Player One') {
       p1.name = nameInp.value;
@@ -62,6 +66,10 @@ let player = JSON.parse(localStorage.getItem('player')) ||
         p2.name = 'computer Two'
       }
       nameHeader.innerHTML = 'Player One';
+      setTimeout(() => {
+        document.getElementById('playerIndicator').hidden = true;
+        document.getElementById('playerIndicator').classList.remove('nameTittle')
+      },2000)
       startGame ()
     }
 
