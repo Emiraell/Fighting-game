@@ -12,6 +12,7 @@ let nameHeader = document.getElementById('nameHeader');
 let p1Name = document.getElementById('p1Name');
 let p2Name = document.getElementById('p2Name');
 let outcome = document.getElementById('outcome');
+let nameSection = document.getElementById('nameSection')
 //let p1Header = document.getElementById('p1Header')
 //let p2Header = document.getElementById('p2Header')
 
@@ -36,6 +37,7 @@ let player = [{
   //console.log(player)  
   let p1 = player[0]
   let p2 = player[1]
+  let gottenPlayerNames = false
 
   renderGame (p1, p2)
 
@@ -59,12 +61,27 @@ let player = [{
         p2.name = 'computer Two'
       }
       nameHeader.innerHTML = 'Player One';
+      startGame ()
     }
 
     renderGame (p1, p2)
     nameInp.value = ''
     console.log(player)
   }
+
+const startGame =  () => {
+  
+  if (p1.name !== '' && p2.name !== '') {
+    setTimeout (() => {
+      document.getElementById('start').innerHTML = 'FIGHT!!!!!'
+      setTimeout (() => {
+        document.getElementById('start').innerHTML = '';
+        nameSection.hidden = true;
+        gottenPlayerNames = true
+      }, 3000)
+    },1000)
+  }
+} 
 
 function renderGame (player1, player2) {
 
@@ -90,7 +107,11 @@ if (player1.health === 0 || player2.health === 0) {
 let damageAmt = 0;
 let damaged = false
 const strike = (attacker, enemy) => {
-  let damage = Math.ceil(Math.random() * 10)
+
+  if (gottenPlayerNames === true) {
+    //nameSection.hidden = true;
+
+    let damage = Math.ceil(Math.random() * 10)
   damageAmt = damage
   //console.log(damage)
   if (attacker.striked === true) {
@@ -112,6 +133,8 @@ const strike = (attacker, enemy) => {
   healed = false
   damaged = true;
   return damaged
+  }
+  
 };
 
 
@@ -120,8 +143,11 @@ let superDamaged = false;
 //let unstrikedHealth;
 
 const superStrike = (attacker, enemy) => {
-  
-  let superStrikeAmt = Math.ceil((Math.random () * 10) + 10)
+
+  if (gottenPlayerNames === true) {
+    //nameSection.hidden = true;
+
+    let superStrikeAmt = Math.ceil((Math.random () * 10) + 10)
   superDamageAmt = superStrikeAmt
   //console.log(superStrikeAmt)
   if (attacker.striked === true) {
@@ -145,6 +171,8 @@ const superStrike = (attacker, enemy) => {
   healed = false
   superDamaged = true
   return superDamaged
+  }
+  
 }
 
 const defend = (attacker, defender) => {
