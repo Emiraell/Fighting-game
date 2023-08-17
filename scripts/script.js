@@ -12,7 +12,7 @@ let nameHeader = document.getElementById('nameHeader');
 let p1Name = document.getElementById('p1Name');
 let p2Name = document.getElementById('p2Name');
 let outcome = document.getElementById('outcome');
-let nameSection = document.getElementById('nameSection')
+let nameSection = document.getElementById('nameGetter');
 //let p1Header = document.getElementById('p1Header')
 //let p2Header = document.getElementById('p2Header')
 
@@ -23,8 +23,9 @@ let gamePlaying = true;
 let healed = false;
 //let striked = false;
 //let executed = false
-
-let player = [{
+//localStorage.removeItem('names')
+let player = JSON.parse(localStorage.getItem('player')) ||
+ [{
   name: '',
   health: 100,
   striked: false
@@ -37,7 +38,7 @@ let player = [{
   //console.log(player)  
   let p1 = player[0]
   let p2 = player[1]
-  let gottenPlayerNames = false
+  let gottenPlayerNames = JSON.parse(localStorage.getItem('names')) || false
 
   renderGame (p1, p2)
 
@@ -73,13 +74,13 @@ const startGame =  () => {
   
   if (p1.name !== '' && p2.name !== '') {
     setTimeout (() => {
+      nameSection.hidden = true;
       document.getElementById('start').innerHTML = 'FIGHT!!!!!'
       setTimeout (() => {
         document.getElementById('start').innerHTML = '';
-        nameSection.hidden = true;
         gottenPlayerNames = true
-      }, 3000)
-    },1000)
+      }, 2000)
+    }, 1000)
   }
 } 
 
@@ -125,6 +126,8 @@ const strike = (attacker, enemy) => {
       enemy.health = 0
     }
     
+    localStorage.setItem('player', JSON.stringify(player))
+    localStorage.setItem('names', JSON.stringify(gottenPlayerNames))
     renderGame (p1,p2)
   }
   console.log(player)
@@ -157,6 +160,9 @@ const superStrike = (attacker, enemy) => {
   if (attacker.health > 0 && enemy.health > 0) {
     enemy.health -= superStrikeAmt
     enemy.striked = true
+
+    localStorage.setItem('player', JSON.stringify(player))
+    localStorage.setItem('names', JSON.stringify(gottenPlayerNames))
     //enemy.strikedHealth = enemy.health
     //console.log(enemy.strikedHealth)
 
@@ -188,6 +194,7 @@ const defend = (attacker, defender) => {
   defender.striked = false
   //striked = false
   }
+  localStorage.setItem('player', JSON.stringify(player))
 //console.log(player)
   //executed = true
   
@@ -207,6 +214,7 @@ const heal = (playerr) => {
     //console.log(playerr.health) 
   }
   
+  localStorage.setItem('player', JSON.stringify(player))
   renderGame (p1,p2)
 }
 
