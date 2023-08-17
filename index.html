@@ -4,38 +4,40 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Emirael Fighting Game</title>
-  <link rel="stylesheet" href="styles/fight.css">
+  <link rel="stylesheet" href="styles/player.css">
 </head>
 <body>
   <header>
-    <p id="gameTittle">
+    <h3 id="gameTittle" class="gameTittle js-gameTittle">
       FIGHTING GAME
-    </p>
+    </h3>
   </header>
-  <section id="nameSection" class="nameSec">
-    <div id = "nameGetter">
-      <div id="nameHeader" class="nameHead">
+  <section id="nameSection" class="nameSec js-nameSec">
+    <div id = "nameGetter" class="getNames js-getNames">
+      <div id="nameHeader" class="nameHead js-nameHead">
         Player One
       </div>
       <input type="text" id="nameInput" class="nameInp js-nameInp" placeholder="Enter name">
-      <button id="nameBtn" onclick="getPlayerNames ()">Enter</button>
+      <button id="nameBtn" onclick="getPlayerNames ()" class="enterBtn js-enterBtn">Enter</button>
     </div>
 
-    <div id="playerNames" class="playerNameDiv">
-      <div id="playerIndicator">
-        <div id="p1Header"> player One </div>
-        <div id="p2Header"> player Two </div>
+    <div id="playerNames" class="playerNameDiv js-playerNameDiv">
+      <div id="playerIndicator" class="nameTittle js-nameTittle">
+        <div id="p1Header" class="playerOne js-playerOne"> player One </div>
+        <div id="p2Header" class="playerTwo js-playerTwo"> player Two </div>
       </div>
-      <div id="nameIndicator">
-        <div id="p1Name"> </div>
-        <div id="p2Name"> </div>
+      <div id="nameIndicator" class="namesDiv js-namesDiv">
+        <div id="p1Name" class="p1Name js-p1Name">Emirael </div>
+        <div id="p2Name" class="p2Name js-p2Name">Emirael</div>
       </div>
     </div>
   </section>
 
-  <section id="gameSection" class="gameSec">
-    <div>
-      <div id="p1Power"></div>
+  
+  <div id="start" class="fightDiv js-fight"></div>
+  <section id="gameSection" class="gameSec js-game">
+    <div id="p1Sec" class="p1Div js-p1Div">
+      <div id="p1Power" class="p1Strength js-p1Strenght">100</div>
       <img src="https://i.gifer.com/origin/00/0019f6845ceaa9347b881ccbe8f5644a_w200.gif" alt="">
       <div id="p1ActionBtns" class="p1Btns">
         <div class="verticalBtn"> <button id="p1Attack" onclick=" strike (p1, p2)"> W: <br> Strike</button> </div>
@@ -47,10 +49,9 @@
       </div>
     </div>
 
-    <div id="start"></div>
 
-    <div>
-      <div id="p2Power"></div>
+    <div id="p2Sec" class="p2Div js-p2Div">
+      <div id="p2Power" class="p2Strength js-p2Strength">100</div>
       <img src="https://i.gifer.com/origin/00/0019f6845ceaa9347b881ccbe8f5644a_w200.gif" alt="">
       <div id="p2ActionBtns" class="p2Btns">
         <div class="verticalBtn"> <button id="p2Attack" onclick=" strike (p2, p1)"> I: <br> Strike </button> </div>

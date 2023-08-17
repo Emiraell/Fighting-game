@@ -16,7 +16,7 @@ let nameSection = document.getElementById('nameGetter');
 //let p1Header = document.getElementById('p1Header')
 //let p2Header = document.getElementById('p2Header')
 
-document.getElementById('playerIndicator').hidden = true;
+//document.getElementById('playerIndicator').hidden = true;
 
 
 let gamePlaying = true;
@@ -40,10 +40,10 @@ let player = JSON.parse(localStorage.getItem('player')) ||
   let p2 = player[1]
   let gottenPlayerNames = JSON.parse(localStorage.getItem('names')) || false
 
-  renderGame (p1, p2)
+  //renderGame (p1, p2)
 
   function getPlayerNames () {
-    document.getElementById('playerIndicator').hidden = false;
+//    document.getElementById('playerIndicator').hidden = false;
     //let names = nameInp.value;
     if (nameHeader.innerText === 'Player One') {
       p1.name = nameInp.value;
