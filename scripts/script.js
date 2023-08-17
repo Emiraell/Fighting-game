@@ -16,18 +16,17 @@ let outcome = document.getElementById('outcome');
 
 let gamePlaying = true;
 let healed = false;
-let striked = false;
+//let striked = false;
 //let executed = false
 
 let player = [{
-  name: 'excel',
+  name: '',
   health: 100,
-  striked: false,
-
+  striked: false
 }, {
-    name: 'nonso',
+    name: '',
     health: 100,
-    striked: false,
+    striked: false
   }];
 
   //console.log(player)  
@@ -35,6 +34,31 @@ let player = [{
   let p2 = player[1]
 
   renderGame (p1, p2)
+
+  function getPlayerNames () {
+
+    //let names = nameInp.value;
+    if (nameHeader.innerText === 'Player One') {
+      p1.name = nameInp.value;
+      if (nameInp.value === '') {
+        p1.name = 'computer one'
+      }
+      nameHeader.innerText = 'Player Two'
+      //console.log(names)
+    } else  {
+      p2.name = nameInp.value
+      if (nameInp.value === '') {
+        p2.name = 'computer Two'
+      } else if (p1.name === 'computer one' && nameInp.value != '') {
+        p1.name = 'computer'
+      }
+      nameHeader.innerHTML = 'Player One';
+    }
+
+    renderGame (p1, p2)
+    nameInp.value = ''
+    console.log(player)
+  }
 
 function renderGame (player1, player2) {
 
@@ -63,12 +87,12 @@ const strike = (attacker, enemy) => {
   let damage = Math.ceil(Math.random() * 10)
   damageAmt = damage
   //console.log(damage)
-  if (attacker.strike === true) {
-    attacker.strike = false
+  if (attacker.striked === true) {
+    attacker.striked = false
   }
   if (attacker.health > 0 && enemy.health > 0) {
     enemy.health -= damage
-    enemy.strike = true
+    enemy.striked = true
     //console.log(enemy.health)
     if (enemy.health < 0) {
       enemy.health = 0
@@ -76,7 +100,7 @@ const strike = (attacker, enemy) => {
     
     renderGame (p1,p2)
   }
-  //console.log(player)
+  console.log(player)
   //executed = true;
   //striked = true;
   healed = false
@@ -94,7 +118,7 @@ const superStrike = (attacker, enemy) => {
   let superStrikeAmt = Math.ceil((Math.random () * 10) + 10)
   superDamageAmt = superStrikeAmt
   //console.log(superStrikeAmt)
-  if (attacker.strike === true) {
+  if (attacker.striked === true) {
     attacker.striked = false
   }
 
@@ -109,7 +133,7 @@ const superStrike = (attacker, enemy) => {
     }
     renderGame (p1, p2)
   }
-  //console.log(player)
+  console.log(player)
   //executed = true
   //striked = true
   healed = false
@@ -119,15 +143,15 @@ const superStrike = (attacker, enemy) => {
 
 const defend = (attacker, defender) => {
 
-  if (defender.strike === true && damaged === true && healed === false) {
+  if (defender.striked === true && damaged === true && healed === false) {
     defender.health += damageAmt
     damaged = false
-    defender.strike = false
-    striked = false
-  } else if (defender.strike === true && superDamaged === true && healed === false) {
+    defender.striked = false
+    //striked = false
+  } else if (defender.striked === true && superDamaged === true && healed === false) {
   defender.health += superDamageAmt
   superDamaged = false
-  defender.strike = false
+  defender.striked = false
   //striked = false
   }
 //console.log(player)
@@ -209,24 +233,3 @@ document.addEventListener('keydown', (events) => {
     defend (p1, p2)
   }
 })
-
-/*function getnameInp () {
-
-  if (nameHeader.innerText === 'Player One Name') {
-    p1Name.innerHTML = nameInp.value
-    if (p1Name.innerHTML === 'player One' && nameInp.value === '' ) {
-      p1Name.innerHTML = 'Computer'
-    }
-    p1Name.innerHTML = nameInp.value
-    nameHeader.innerHTML = 'Player Two Name'
-  } else if (nameHeader.innerText === 'Player Two Name') {
-    p2Name.innerHTML = nameInp.value
-    nameHeader.innerHTML = 'Player One Name'
-  } 
-  nameInp.value = '';
-}
-
-nameEnter.addEventListener('click', () => {
-  getnameInp ();
-})
-*/
