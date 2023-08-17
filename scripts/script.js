@@ -12,6 +12,10 @@ let nameHeader = document.getElementById('nameHeader');
 let p1Name = document.getElementById('p1Name');
 let p2Name = document.getElementById('p2Name');
 let outcome = document.getElementById('outcome');
+//let p1Header = document.getElementById('p1Header')
+//let p2Header = document.getElementById('p2Header')
+
+document.getElementById('playerIndicator').hidden = true;
 
 
 let gamePlaying = true;
@@ -36,7 +40,7 @@ let player = [{
   renderGame (p1, p2)
 
   function getPlayerNames () {
-
+    document.getElementById('playerIndicator').hidden = false;
     //let names = nameInp.value;
     if (nameHeader.innerText === 'Player One') {
       p1.name = nameInp.value;
@@ -47,10 +51,12 @@ let player = [{
       //console.log(names)
     } else  {
       p2.name = nameInp.value
-      if (nameInp.value === '') {
-        p2.name = 'computer Two'
-      } else if (p1.name === 'computer one' && nameInp.value != '') {
+      if (p1.name !== 'computer one' && nameInp.value === '') {
+        p2.name = 'computer'
+      } else if (p1.name === 'computer one' && nameInp.value !== '') {
         p1.name = 'computer'
+      } else if (nameInp.value === '') {
+        p2.name = 'computer Two'
       }
       nameHeader.innerHTML = 'Player One';
     }
