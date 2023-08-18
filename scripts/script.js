@@ -84,7 +84,7 @@ let player = JSON.parse(localStorage.getItem('player')) ||
       setTimeout(() => {
         document.getElementById('playerIndicator').hidden = true;
         document.getElementById('playerIndicator').classList.remove('nameTittle')
-      },2000)
+      },1000)
       startGame ()
     }
 
@@ -96,20 +96,21 @@ let player = JSON.parse(localStorage.getItem('player')) ||
 const startGame =  () => {
   
   if (p1.name !== '' && p2.name !== '') {
+    nameSection.hidden = true;
     setTimeout (() => {
-      nameSection.hidden = true;
       document.getElementById('start').innerHTML = 'FIGHT!!!!!'
       setTimeout (() => {
         document.getElementById('start').innerHTML = '';
 
         let randNum = Math.floor(Math.random() * background.length)
         document.body.style.backgroundImage = `url(${background[randNum]})`
-        console.log((background[randNum]))
+        document.body.style.backgroundSize = "cover"
         gottenPlayerNames = true
       }, 2000)
     }, 1000)
   }
 } 
+
 
 function renderGame (player1, player2) {
 
@@ -153,9 +154,18 @@ const strike = (attacker, enemy) => {
       enemy.health = 0
     }
     
+    
     localStorage.setItem('player', JSON.stringify(player))
     localStorage.setItem('names', JSON.stringify(gottenPlayerNames))
+    //window[`"${enemy}Power"`].style.color = "red"
+    if (p1 === enemy) {
+      p1Power.style.color = "red"
+    } else {
+      p2Power.style.color = "red"
+    }
     renderGame (p1,p2)
+    
+    
   }
   console.log(player)
   //executed = true;
@@ -196,6 +206,7 @@ const superStrike = (attacker, enemy) => {
     if (enemy.health < 0) {
       enemy.health = 0
     }
+    styleHealth (enemy)
     renderGame (p1, p2)
   }
   console.log(player)
@@ -206,6 +217,18 @@ const superStrike = (attacker, enemy) => {
   return superDamaged
   }
   
+}
+
+const styleHealth = (player) => {
+  if (p1 === player && p1.striked === true ) {
+    p1Power.style.color = "red"
+  } else if (p2 === player && p2.striked === true) {
+    p2Power.style.color = "red"
+  } else if (p1 === player) {
+    p1Power.style.color = "white"
+  } else if (p2 === player) {
+    p2Power.style.color = "white"
+  }
 }
 
 const defend = (attacker, defender) => {
@@ -224,25 +247,26 @@ const defend = (attacker, defender) => {
   localStorage.setItem('player', JSON.stringify(player))
 //console.log(player)
   //executed = true
-  
+  styleHealth (defender)
   renderGame (p1,p2)
 }
 
 
-const heal = (playerr) => {
+const heal = (player) => {
 
   let recoverAmt = Math.ceil(Math.random () * 8)
   //console.log(recover)
-  playerr.health += recoverAmt
+  player.health += recoverAmt
   healed = true
   //console.log (playerr.health)
-  if (playerr.health > 100) {
-    playerr.health = 100
+  if (player.health > 100) {
+    player.health = 100
     //console.log(playerr.health) 
   }
-  
-  localStorage.setItem('player', JSON.stringify(player))
+  styleHealth(player)
   renderGame (p1,p2)
+  localStorage.setItem('player', JSON.stringify(player))
+  
 }
 
 /*const winner = (pl1, pl2) => {
