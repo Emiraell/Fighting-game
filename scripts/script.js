@@ -26,10 +26,9 @@ let gamePlaying = true;
 let healed = false;
 //let striked = false;
 //let executed = false
-localStorage.removeItem('player')
-localStorage.removeItem('names')
-let player = JSON.parse(localStorage.getItem('player')) ||
- [{
+//localStorage.removeItem('player')
+//localStorage.removeItem('names')
+let player = [{
   name: '',
   health: 100,
   striked: false
@@ -93,6 +92,7 @@ let player = JSON.parse(localStorage.getItem('player')) ||
     console.log(player)
   }
 
+  
 const startGame =  () => {
   
   if (p1.name !== '' && p2.name !== '') {
@@ -155,8 +155,8 @@ const strike = (attacker, enemy) => {
     }
     
     
-    localStorage.setItem('player', JSON.stringify(player))
-    localStorage.setItem('names', JSON.stringify(gottenPlayerNames))
+    //localStorage.setItem('player', JSON.stringify(player))
+    //localStorage.setItem('names', JSON.stringify(gottenPlayerNames))
     //window[`"${enemy}Power"`].style.color = "red"
     if (p1 === enemy) {
       p1Power.style.color = "red"
@@ -198,8 +198,8 @@ const superStrike = (attacker, enemy) => {
     enemy.health -= superStrikeAmt
     enemy.striked = true
 
-    localStorage.setItem('player', JSON.stringify(player))
-    localStorage.setItem('names', JSON.stringify(gottenPlayerNames))
+    //localStorage.setItem('player', JSON.stringify(player))
+    //localStorage.setItem('names', JSON.stringify(gottenPlayerNames))
     //enemy.strikedHealth = enemy.health
     //console.log(enemy.strikedHealth)
 
@@ -220,14 +220,17 @@ const superStrike = (attacker, enemy) => {
 }
 
 const styleHealth = (player) => {
-  if (p1 === player && p1.striked === true ) {
+  
+  if (p1 === player && p1.striked === true && healed != true ) {
     p1Power.style.color = "red"
-  } else if (p2 === player && p2.striked === true) {
+  } else if (p2 === player && p2.striked === true && healed != true) {
     p2Power.style.color = "red"
   } else if (p1 === player) {
     p1Power.style.color = "white"
-  } else if (p2 === player) {
+  } else if (p2 === player && healed) {
     p2Power.style.color = "white"
+  } else{
+    p1.p
   }
 }
 
@@ -244,7 +247,7 @@ const defend = (attacker, defender) => {
   defender.striked = false
   //striked = false
   }
-  localStorage.setItem('player', JSON.stringify(player))
+  //localStorage.setItem('player', JSON.stringify(player))
 //console.log(player)
   //executed = true
   styleHealth (defender)
@@ -265,7 +268,7 @@ const heal = (player) => {
   }
   styleHealth(player)
   renderGame (p1,p2)
-  localStorage.setItem('player', JSON.stringify(player))
+  //localStorage.setItem('player', JSON.stringify(player))
   
 }
 
@@ -276,6 +279,36 @@ const heal = (player) => {
     outcome.innerHTML = `${p2.name} wins`
   } 
 }*/
+
+function reset () {
+  document.getElementById('playerIndicator').hidden = true;
+  document.getElementById('playerIndicator').classList.remove('nameTittle')
+  document.getElementById('nameIndicator').classList.remove('namesDiv')
+
+  
+  //localStorage.removeItem('player')
+  //localStorage.removeItem('names')
+  player = [{
+    name: '',
+    health: 100,
+    striked: false
+  }, {
+      name: '',
+      health: 100,
+      striked: false
+    }];
+    nameSection.hidden = false;
+    document.body.style.backgroundImage ="none"
+    
+
+    p1Name.innerHTML = player[0].name
+    p2Name.innerHTML = player[1].name
+    p1Power.innerHTML = ''
+    p2Power.innerHTML = ''
+
+ // renderGame(p1,p2)
+  }
+
 
 document.addEventListener('keyup', (events) => {
   if (events.key === 'w' && gamePlaying === true && p2.health > 0) {
