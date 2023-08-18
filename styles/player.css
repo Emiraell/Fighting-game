@@ -10,7 +10,6 @@ body {
   justify-content: center;
   background-color: #250112;
   color: #f5f9f9;
-  max-width: 800px;
   font-family: arial;
 };
 header{
@@ -53,6 +52,8 @@ input {
 }
 .fightDiv {
   color: #d02323;
+  font-size: 20px;
+  font-style: italic;
 }
 .nameSec, h3 {
   margin-left: -10px;
@@ -93,4 +94,7 @@ img {
 
 .verticalBtn {
   margin-left: 27px;
+}
+.background {
+  background-image: url("/images/background/fighgt3.jpeg");
 }

@@ -19,6 +19,7 @@ let nameSection = document.getElementById('nameGetter');
 document.getElementById('playerIndicator').hidden = true;
 
 document.getElementById('playerIndicator').classList.remove('nameTittle')
+document.getElementById('nameIndicator').classList.remove('namesDiv')
 
 
 let gamePlaying = true;
@@ -38,6 +39,19 @@ let player = JSON.parse(localStorage.getItem('player')) ||
     striked: false
   }];
 
+  let background = [
+    "images/background/fight3.jpeg",
+    "images/background/fight4.jpeg",
+    "images/background/fight2.jpg",
+    "images/background/fight1.jpg",
+    "images/background/fight6.gif",
+    "images/background/fight5.jpeg"
+  ]
+  //forEach((element) => {
+    //console.log(element)
+    //document.body.style.backgroundImage = element
+  //})
+
   //console.log(player)  
   let p1 = player[0]
   let p2 = player[1]
@@ -48,6 +62,7 @@ let player = JSON.parse(localStorage.getItem('player')) ||
   function getPlayerNames () {
     document.getElementById('playerIndicator').hidden = false;
     document.getElementById('playerIndicator').classList.add('nameTittle')
+    document.getElementById('nameIndicator').classList.add('namesDiv')
     //let names = nameInp.value;
     if (nameHeader.innerText === 'Player One') {
       p1.name = nameInp.value;
@@ -86,6 +101,10 @@ const startGame =  () => {
       document.getElementById('start').innerHTML = 'FIGHT!!!!!'
       setTimeout (() => {
         document.getElementById('start').innerHTML = '';
+
+        let randNum = Math.floor(Math.random() * background.length)
+        document.body.style.backgroundImage = `url(${background[randNum]})`
+        console.log((background[randNum]))
         gottenPlayerNames = true
       }, 2000)
     }, 1000)
