@@ -1,3 +1,4 @@
+//Divs needed for the entire game
 let p1Attack = document.getElementById('p1Attack');
 let p2Attack = document.getElementById('p2Attack');
 let p1Heal = document.getElementById('p1Heal');
@@ -16,21 +17,20 @@ let nameSection = document.getElementById('nameGetter');
 let p1Image = document.getElementById('p1Image');
 let p2Image = document.getElementById('p2Image');
 let nameIndicator = document.getElementById('nameIndicator');
-let playerIndicator = document.getElementById('playerIndicator')
+let playerIndicator = document.getElementById('playerIndicator');
 
+//initialiaztion
 playerIndicator.hidden = true;
-playerIndicator.classList.remove('nameTittle')
-nameIndicator.classList.remove('namesDiv')
-p1Image.classList.remove('image1')
-p2Image.classList.remove('image2')
+playerIndicator.classList.remove('nameTittle');
+nameIndicator.classList.remove('namesDiv');
+p1Image.classList.remove('image1');
+p2Image.classList.remove('image2');
 
-
+//Creating variables needed in the game
 let gamePlaying = true;
 let healed = false;
-//let striked = false;
-//let executed = false
-//localStorage.removeItem('player')
-//localStorage.removeItem('names')
+let gottenPlayerNames = false
+
 let player = [{
   name: '',
   health: 100,
@@ -41,6 +41,26 @@ let player = [{
     striked: false
   }];
 
+  let p1 = player[0];
+  let p2 = player[1];
+  
+
+  //fighter images
+  let p1Fighters = [
+    "images/fighters/fighter3.gif",
+    "images/fighters/fighter4.gif",
+    "images/fighters/fighter5.gif",
+    "images/fighters/fighter7.gif",
+  ];
+
+  let p2Fighters = [
+    "images/fighters/fighter1.gif",
+    "images/fighters/fighter2.gif",
+    "images/fighters/fighter6.gif",
+    "images/fighters/fighter8.gif",
+  ];
+
+  //background images
   let background = [
     "images/backgrounds/background1.gif",
     "images/backgrounds/background2.gif",
@@ -52,258 +72,199 @@ let player = [{
     "images/backgrounds/background8.gif",
     "images/backgrounds/background9.gif"
   ];
-
-  let p1Fighters = [
-    "images/fighters/fighter3.gif",
-    "images/fighters/fighter4.gif",
-    "images/fighters/fighter5.gif",
-    "images/fighters/fighter7.gif",
-  ]
-  //forEach((element) => {
-    //p1Image.innerHTML = `<img src=${element} alt="">`
-  //})
-
-  let p2Fighters = [
-    "images/fighters/fighter1.gif",
-    "images/fighters/fighter2.gif",
-    "images/fighters/fighter6.gif",
-    "images/fighters/fighter8.gif",
-  ]
-  //forEach((element) => {
-    //console.log(element)
-    //document.body.style.backgroundImage = element
-  //})
-
-  //console.log(player)  
-  let p1 = player[0];
-  let p2 = player[1];
-  let gottenPlayerNames = JSON.parse(localStorage.getItem('names')) || false
-
-  //renderGame (p1, p2)
-
+  
+  //Get player names, save and display them
   function getPlayerNames () {
+    playerIndicator.hidden = false;
+    playerIndicator.classList.add('nameTittle');
+    nameIndicator.classList.add('namesDiv');
     
-    document.getElementById('playerIndicator').hidden = false;
-    document.getElementById('playerIndicator').classList.add('nameTittle')
-    document.getElementById('nameIndicator').classList.add('namesDiv')
-    //let names = nameInp.value;
     if (nameHeader.innerText === 'Player One') {
+      //get player one name
       p1.name = nameInp.value;
+
       if (nameInp.value === '') {
-        p1.name = 'Player 1'
+        p1.name = 'Player 1';
       }
-      const randomValue = Math.floor(Math.random () * p1Fighters.length)
-      p1Image.innerHTML = `<img src=${p1Fighters[randomValue]} alt="">`
-      //p1Image.classList.remove('image1')
-      p2Image.classList.add('image2')
-      nameHeader.innerText = 'Player Two'
-      p2.health = ''
-      //console.log(names)
+      //get random image for player one and display it
+      const randomValue = Math.floor(Math.random () * p1Fighters.length);
+      p1Image.innerHTML = `<img src=${p1Fighters[randomValue]} alt="">`;
+      p2Image.classList.add('image2');
+
+      nameHeader.innerText = 'Player Two';
+      p2.health = '';
     } else  {
+      //get player two name, save and display it
       p2.name = nameInp.value
+
       if (p1.name !== 'Player 1' && nameInp.value === '') {
-        p2.name = 'computer'
+        p2.name = 'computer';
       } else if (p1.name === 'Player 1' && nameInp.value !== '') {
-        p1.name = 'computer'
+        p1.name = 'computer';
       } else if (nameInp.value === '') {
-        p2.name = 'Player 2'
+        p2.name = 'Player 2';
       }
+      //get random image for player two and display it
       const randomValue = Math.floor(Math.random () * p2Fighters.length)
       p2Image.innerHTML = `<img src=${p2Fighters[randomValue]} alt="">`
+
       p2.health = 100
-      //p2Image.classList.remove('image2')
       nameHeader.innerHTML = 'Player One';
+
+      //hid html elements used in getting player names after getting player two name
       setTimeout(() => {
-        document.getElementById('playerIndicator').hidden = true;
-        document.getElementById('playerIndicator').classList.remove('nameTittle')
+        playerIndicator.hidden = true;
+        playerIndicator.classList.remove('nameTittle');
       },1000)
-      startGame ()
+
+      //start the game after collecting player names
+      startGame ();
     }
 
-    renderGame (p1, p2)
-    nameInp.value = ''
-    console.log(player)
-  }
+    renderGame (p1, p2);
+    nameInp.value = '';
+  };
 
-  
+  //set background and all that's needed for the game to start playing
 const startGame =  () => {
   
   if (p1.name !== '' && p2.name !== '') {
     nameSection.hidden = true;
+
     setTimeout (() => {
-      document.getElementById('start').innerHTML = 'FIGHT!!!!!'
+      document.getElementById('start').innerHTML = 'FIGHT!!!!!';
+
       setTimeout (() => {
         document.getElementById('start').innerHTML = '';
 
-        let randNum = Math.floor(Math.random() * background.length)
-        document.body.style.backgroundImage = `url(${background[randNum]})`
-        document.body.style.backgroundSize = "cover"
-        gottenPlayerNames = true
-      }, 2000)
-    }, 1000)
+        //pick a fighting background at random
+        let randNum = Math.floor(Math.random() * background.length);
+        document.body.style.backgroundImage = `url(${background[randNum]})`;
+        document.body.style.backgroundSize = "cover";
+        gottenPlayerNames = true;
+      }, 2000);
+    }, 1000);
   }
-} 
+}; 
 
-
+//display updated action of the game at every point in the game
 function renderGame (player1, player2) {
+  p1Name.innerHTML = p1.name;
+  p2Name.innerHTML = p2.name;
+  p1Power.innerHTML = p1.health;
+  p2Power.innerHTML = p2.health;
 
-p1Name.innerHTML = p1.name
-p2Name.innerHTML = p2.name
-p1Power.innerHTML = p1.health
-p2Power.innerHTML = p2.health
+  //check if game is over
+  if (player1.health === 0 || player2.health === 0) {
+    gamePlaying = false;
 
-if (player1.health === 0 || player2.health === 0) {
-  gamePlaying = false
-  if (player2.health < 1) {
-    document.getElementById('start').innerHTML = `${player1.name} wins`
-  } else if  (player1.health < 1) {
-    document.getElementById('start').innerHTML = `${player2.name} wins`
-  } else {
-    document.getElementById('start').innerHTML = `TIE`
+    //declare winner
+    if (player2.health < 1) {
+      document.getElementById('start').innerHTML = `${player1.name} wins`;
+    } else if  (player1.health < 1) {
+      document.getElementById('start').innerHTML = `${player2.name} wins`;
+    } else {
+      document.getElementById('start').innerHTML = `TIE`;
+    }
   }
-  //document.getElementById('start').style.color = "#37dd31"
-  //winner (p1,p2);
-}
 };
 
+//strike to cause damage on opponent
 let damageAmt = 0;
-let damaged = false
+let damaged = false;
+
 const strike = (attacker, enemy) => {
 
+  //check if both players name are ready before striking
   if (gottenPlayerNames === true) {
-    //nameSection.hidden = true;
+  let damage = Math.ceil(Math.random() * 10)
+  damageAmt = damage;
+  //if (attacker.striked === true) {
+    attacker.striked = false;
+  //}
+    if (attacker.health > 0 && enemy.health > 0) {
+      //on striking, inflict a random damaged between 1 and 10 on the enemy
+      enemy.health -= damage;
+      enemy.striked = true;
+      //make sure enemy's health never goes below zero
+      if (enemy.health < 0) {
+        enemy.health = 0;
+      }
+      
+      /*if (p1 === enemy) {
+        p1Power.style.color = "red"
+      } else {
+        p2Power.style.color = "red"
+      }*/
+      renderGame (p1,p2)
+    }
 
-    let damage = Math.ceil(Math.random() * 10)
-  damageAmt = damage
-  //console.log(damage)
-  if (attacker.striked === true) {
-    attacker.striked = false
-  }
-  if (attacker.health > 0 && enemy.health > 0) {
-    enemy.health -= damage
-    enemy.striked = true
-    //console.log(enemy.health)
-    if (enemy.health < 0) {
-      enemy.health = 0
-    }
-    
-    
-    //localStorage.setItem('player', JSON.stringify(player))
-    //localStorage.setItem('names', JSON.stringify(gottenPlayerNames))
-    //window[`"${enemy}Power"`].style.color = "red"
-    if (p1 === enemy) {
-      p1Power.style.color = "red"
-    } else {
-      p2Power.style.color = "red"
-    }
-    renderGame (p1,p2)
-    
-    
-  }
-  console.log(player)
-  //executed = true;
-  //striked = true;
   healed = false
   damaged = true;
-  return damaged
   }
-  
+  return damaged;
 };
 
-
+//Super strike to inflict heavier damage on opponent
 let superDamageAmt = 0;
 let superDamaged = false;
-//let unstrikedHealth;
 
 const superStrike = (attacker, enemy) => {
 
+  // also check if both players name are ready before striking
   if (gottenPlayerNames === true) {
-    //nameSection.hidden = true;
+    let superStrikeAmt = Math.ceil((Math.random () * 10) + 10);
+    superDamageAmt = superStrikeAmt;
+  //if (attacker.striked === true) {
+    attacker.striked = false;
+  //}
+    if (attacker.health > 0 && enemy.health > 0) {
+      //on striking, inflict a heavy damaged between 10 and 20 on the enemy
+      enemy.health -= superStrikeAmt;
+      enemy.striked = true;
 
-    let superStrikeAmt = Math.ceil((Math.random () * 10) + 10)
-  superDamageAmt = superStrikeAmt
-  //console.log(superStrikeAmt)
-  if (attacker.striked === true) {
-    attacker.striked = false
-  }
-
-  if (attacker.health > 0 && enemy.health > 0) {
-    enemy.health -= superStrikeAmt
-    enemy.striked = true
-
-    //localStorage.setItem('player', JSON.stringify(player))
-    //localStorage.setItem('names', JSON.stringify(gottenPlayerNames))
-    //enemy.strikedHealth = enemy.health
-    //console.log(enemy.strikedHealth)
-
-    if (enemy.health < 0) {
-      enemy.health = 0
+      if (enemy.health < 0) {
+        enemy.health = 0;
+      }
+      renderGame (p1, p2);
     }
-    styleHealth (enemy)
-    renderGame (p1, p2)
+  healed = false;
+  superDamaged = true;
+  return superDamaged;
   }
-  console.log(player)
-  //executed = true
-  //striked = true
-  healed = false
-  superDamaged = true
-  return superDamaged
-  }
-  
-}
+};
 
-const styleHealth = (player) => {
-  
-  if (p1 === player && p1.striked === true && healed != true ) {
-    p1Power.style.color = "red"
-  } else if (p2 === player && p2.striked === true && healed != true) {
-    p2Power.style.color = "red"
-  } else if (p1 === player) {
-    p1Power.style.color = "white"
-  } else if (p2 === player && healed) {
-    p2Power.style.color = "white"
-  } else{
-    p1.p
-  }
-}
-
-const defend = (attacker, defender) => {
+//recovering the last amount of damaged done to an enemy
+//only the last player striked || superstriked can recover and it's just once 
+const defend = (defender) => {
 
   if (defender.striked === true && damaged === true && healed === false) {
-    defender.health += damageAmt
-    damaged = false
-    defender.striked = false
-    //striked = false
+    //recover the last amount if defender was striked
+    defender.health += damageAmt;
+    damaged = false;
+    defender.striked = false;
   } else if (defender.striked === true && superDamaged === true && healed === false) {
-  defender.health += superDamageAmt
-  superDamaged = false
-  defender.striked = false
-  //striked = false
+    //recover the last amount if defender was super striked
+    defender.health += superDamageAmt;
+    superDamaged = false;
+    defender.striked = false;
   }
-  //localStorage.setItem('player', JSON.stringify(player))
-//console.log(player)
-  //executed = true
-  styleHealth (defender)
-  renderGame (p1,p2)
-}
+  renderGame (p1,p2);
+};
 
-
+//player recover a significant health after being striked
 const heal = (player) => {
 
-  let recoverAmt = Math.ceil(Math.random () * 8)
-  //console.log(recover)
-  player.health += recoverAmt
-  healed = true
-  //console.log (playerr.health)
+  let recoverAmt = Math.ceil(Math.random () * 8);
+  //player recover an amount of health between  1-8
+  player.health += recoverAmt;
+  healed = true;
   if (player.health > 100) {
-    player.health = 100
-    //console.log(playerr.health) 
+    //keeps player health below 100
+    player.health = 100;
   }
-  styleHealth(player)
-  renderGame (p1,p2)
-  //localStorage.setItem('player', JSON.stringify(player))
-  
-}
+  renderGame (p1,p2);
+};
 
 /*const winner = (pl1, pl2) => {
   if (gamePlaying === false && pl2.health < 1) {
@@ -313,14 +274,12 @@ const heal = (player) => {
   } 
 }*/
 
+//reset entire game at any point in the game
 function reset () {
-  document.getElementById('playerIndicator').hidden = true;
-  document.getElementById('playerIndicator').classList.remove('nameTittle')
-  document.getElementById('nameIndicator').classList.remove('namesDiv')
+  playerIndicator.hidden = true;
+  playerIndicator.classList.remove('nameTittle')
+  nameIndicator.classList.remove('namesDiv')
 
-  
-  //localStorage.removeItem('player')
-  //localStorage.removeItem('names')
   gamePlaying = false
   player = [{
     name: '',
@@ -340,65 +299,60 @@ function reset () {
     p2Image.innerHTML = ''
     p1Image.classList.remove('image1')
     p2Image.classList.remove('image2')
-    //document.getElementById('start').innerHTML = ''
-    //document.getElementById('start').style.color = "none"
-    
-
     p1Name.innerHTML = player[0].name
     p2Name.innerHTML = player[1].name
     p1Power.innerHTML = ''
     p2Power.innerHTML = ''
+};
 
- // renderGame(p1,p2)
-  }
-
-
+//player one controls
 document.addEventListener('keyup', (events) => {
   if (events.key === 'w' && gamePlaying === true && p2.health > 0) {
-    strike (p1, p2)
+    strike (p1, p2);
+    p2Power.style.color = "red";
   }
-})
-
+});
 document.addEventListener('keyup', (events) => {
   if (events.key === 'z' && gamePlaying === true && p2.health > 0) {
-    superStrike (p1, p2)
+    p2Power.style.color = "red";
+    superStrike (p1, p2);
   }
-})
-
+});
 document.addEventListener('keyup', (events) => {
   if (events.key === 'a' && gamePlaying === true && p1.health > 0 ) {
     heal (p1);
+    p1Power.style.color = "blue";
   }
-})
-
+});
 document.addEventListener('keydown', (events) => {
   if (events.key === 'd' && gamePlaying === true && p1.health > 0) {
-    defend (p2, p1)
+    defend (p2, p1);
+    p1Power.style.color = "green";
   }
-})
+});
 
-
-
+//player two controls
 document.addEventListener('keyup', (events) => {
   if (events.key === 'i' && gamePlaying === true && p1.health > 0) {
-    strike (p2, p1)
+    strike (p2, p1);
+    p1Power.style.color = "red";
   }
 })
-
 document.addEventListener('keyup', (events) => {
   if (events.key === 'm' && gamePlaying === true && p1.health > 0) {
-    superStrike (p2, p1)
+    superStrike (p2, p1);
+    p1Power.style.color = "red";
   }
-})
-
+});
 document.addEventListener('keyup', (events) => {
   if (events.key === 'j'  && gamePlaying === true && p2.health > 0) {
     heal (p2);
+    p2Power.style.color = "blue";
   }
-})
-
+});
 document.addEventListener('keydown', (events) => {
   if (events.key === 'k' && gamePlaying === true && p2.health > 0) {
-    defend (p1, p2)
+    defend (p1, p2);
+    p2Power.style.color = "green";
   }
-})
+});

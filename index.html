@@ -60,7 +60,9 @@
           <button id="p2heal" onclick=" heal (p2)"> J: <br> Heal </button>
           <button id="p2defend" onclick=" defend (p1, p2)"> k: <br> Defend </button>
         </div>
-        <div class="verticalBtn"> <button id="p2Super" onclick=" superStrike (p2, p1)"> M: <br> sStrike </button> </div>
+        <div class="verticalBtn">
+          <button id="p2Super" onclick=" superStrike (p2, p1)"> M: <br> sStrike </button>
+        </div>
       </div>
       
     </div>
@@ -68,20 +70,24 @@
 
   <section id="outcomeSection">
     <div id="outcome">
-      <button id="reset" class="resetBtn js-resetBtn" onclick="reset ()">Reset</button>
+      <button id="reset" class="resetBtn js-resetBtn" onclick="reset ()">
+        Reset
+      </button>
     </div>
   </section>
 
   <div id="audios"> 
     <audio id="startSound" src="sounds/start.mp3"></audio>
-    <audio id="strike1Sound" src="sounds/strike1.mp3"></audio>
-    <audio id="strike2Sound" src="sounds/strike2.mp3"></audio>
-    <audio id="heal1Sound" src="sounds/heal1.mp3"></audio>
-    <audio id="heal2Sound" src="sounds/heal2.mp3"></audio>
+    <audio id="strikeSound1" src="sounds/strike1.mp3"></audio>
+    <audio id="strikeSound2" src="sounds/strike2.mp3"></audio>
+    <audio id="healSound1" src="sounds/heal1.mp3"></audio>
+    <audio id="healSound2" src="sounds/heal2.mp3"></audio>
     <audio id="superStrike1Sound" src="sounds/superStrike1.mp3"></audio>
-    <audio id="superStrike2" src="sounds/superStrike2.mp3"></audio>
-    <audio  src="sounds/defend1.mp3"></audio>
+    <audio id="superStrike2sound" src="sounds/superStrike2.mp3"></audio>
+    <audio id="defendSound1" src="sounds/defend1.mp3"></audio>
+    <audio id="defendSound2" src="sounds/defend2.mp3"></audio>
   </div>
+  
   <script src="scripts/script.js"></script>
 </body>
 </html>
