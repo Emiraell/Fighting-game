@@ -52,8 +52,9 @@ input {
 }
 .fightDiv {
   color: #dd2b2b;
-  font-size: 20px;
+  font-size: 25px;
   font-style: italic;
+  font-weight: bolder;
 }
 .nameSec, h3 {
   margin-left: -10px;
