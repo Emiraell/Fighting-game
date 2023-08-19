@@ -12,6 +12,7 @@
       FIGHTING GAME
     </h3>
   </header>
+  
   <section id="nameSection" class="nameSec js-nameSec">
     <div id = "nameGetter" class="getNames js-getNames">
       <div id="nameHeader" class="nameHead js-nameHead">
@@ -34,11 +35,12 @@
   </section>
 
   
-  <div id="start" class="fightDiv js-fight"> </div>
+  <div id="start" class="fightDiv js-fight"></div>
+
   <section id="gameSection" class="gameSec js-game">
     <div id="p1Sec" class="p1Div js-p1Div">
       <div id="p1Power" class="p1Strength js-p1Strenght"></div>
-      <img src="https://i.gifer.com/origin/00/0019f6845ceaa9347b881ccbe8f5644a_w200.gif" alt="">
+      <div id="p1Image" class="image1 js-p1Image"> </div>
       <div id="p1ActionBtns" class="p1Btns">
         <div class="verticalBtn"> <button id="p1Attack" onclick=" strike (p1, p2)"> W: <br> Strike</button> </div>
         <div class="horizontalBtn">
@@ -49,10 +51,9 @@
       </div>
     </div>
 
-
     <div id="p2Sec" class="p2Div js-p2Div">
       <div id="p2Power" class="p2Strength js-p2Strength"></div>
-      <img src="https://i.gifer.com/origin/00/0019f6845ceaa9347b881ccbe8f5644a_w200.gif" alt="">
+      <div id="p2Image" class="image2 js-p2Image"></div>
       <div id="p2ActionBtns" class="p2Btns">
         <div class="verticalBtn"> <button id="p2Attack" onclick=" strike (p2, p1)"> I: <br> Strike </button> </div>
         <div class="horizontalBtn">
@@ -68,10 +69,9 @@
   <section id="outcomeSection">
     <div id="outcome">
       <button id="reset" class="resetBtn js-resetBtn" onclick="reset ()">Reset</button>
-
     </div>
   </section>
-  
+
   <div id="audios"> 
     <audio id="startSound" src="sounds/start.mp3"></audio>
     <audio id="strike1Sound" src="sounds/strike1.mp3"></audio>

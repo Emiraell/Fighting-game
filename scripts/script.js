@@ -13,13 +13,16 @@ let p1Name = document.getElementById('p1Name');
 let p2Name = document.getElementById('p2Name');
 let outcome = document.getElementById('outcome');
 let nameSection = document.getElementById('nameGetter');
-//let p1Header = document.getElementById('p1Header')
-//let p2Header = document.getElementById('p2Header')
+let p1Image = document.getElementById('p1Image');
+let p2Image = document.getElementById('p2Image');
+let nameIndicator = document.getElementById('nameIndicator');
+let playerIndicator = document.getElementById('playerIndicator')
 
-document.getElementById('playerIndicator').hidden = true;
-
-document.getElementById('playerIndicator').classList.remove('nameTittle')
-document.getElementById('nameIndicator').classList.remove('namesDiv')
+playerIndicator.hidden = true;
+playerIndicator.classList.remove('nameTittle')
+nameIndicator.classList.remove('namesDiv')
+p1Image.classList.remove('image1')
+p2Image.classList.remove('image2')
 
 
 let gamePlaying = true;
@@ -55,7 +58,10 @@ let player = [{
     "images/fighters/fighter4.gif",
     "images/fighters/fighter5.gif",
     "images/fighters/fighter7.gif",
-  ];
+  ]
+  //forEach((element) => {
+    //p1Image.innerHTML = `<img src=${element} alt="">`
+  //})
 
   let p2Fighters = [
     "images/fighters/fighter1.gif",
@@ -69,13 +75,14 @@ let player = [{
   //})
 
   //console.log(player)  
-  let p1 = player[0]
-  let p2 = player[1]
+  let p1 = player[0];
+  let p2 = player[1];
   let gottenPlayerNames = JSON.parse(localStorage.getItem('names')) || false
 
   //renderGame (p1, p2)
 
   function getPlayerNames () {
+    
     document.getElementById('playerIndicator').hidden = false;
     document.getElementById('playerIndicator').classList.add('nameTittle')
     document.getElementById('nameIndicator').classList.add('namesDiv')
@@ -83,19 +90,28 @@ let player = [{
     if (nameHeader.innerText === 'Player One') {
       p1.name = nameInp.value;
       if (nameInp.value === '') {
-        p1.name = 'computer one'
+        p1.name = 'Player 1'
       }
+      const randomValue = Math.floor(Math.random () * p1Fighters.length)
+      p1Image.innerHTML = `<img src=${p1Fighters[randomValue]} alt="">`
+      //p1Image.classList.remove('image1')
+      p2Image.classList.add('image2')
       nameHeader.innerText = 'Player Two'
+      p2.health = ''
       //console.log(names)
     } else  {
       p2.name = nameInp.value
-      if (p1.name !== 'computer one' && nameInp.value === '') {
+      if (p1.name !== 'Player 1' && nameInp.value === '') {
         p2.name = 'computer'
-      } else if (p1.name === 'computer one' && nameInp.value !== '') {
+      } else if (p1.name === 'Player 1' && nameInp.value !== '') {
         p1.name = 'computer'
       } else if (nameInp.value === '') {
-        p2.name = 'computer Two'
+        p2.name = 'Player 2'
       }
+      const randomValue = Math.floor(Math.random () * p2Fighters.length)
+      p2Image.innerHTML = `<img src=${p2Fighters[randomValue]} alt="">`
+      p2.health = 100
+      //p2Image.classList.remove('image2')
       nameHeader.innerHTML = 'Player One';
       setTimeout(() => {
         document.getElementById('playerIndicator').hidden = true;
@@ -138,14 +154,14 @@ p2Power.innerHTML = p2.health
 
 if (player1.health === 0 || player2.health === 0) {
   gamePlaying = false
-
   if (player2.health < 1) {
-    outcome.innerHTML = `${player1.name} wins`
+    document.getElementById('start').innerHTML = `${player1.name} wins`
   } else if  (player1.health < 1) {
-    outcome.innerHTML = `${player2.name} wins`
+    document.getElementById('start').innerHTML = `${player2.name} wins`
   } else {
-    outcome.innerHTML = `TIE`
+    document.getElementById('start').innerHTML = `TIE`
   }
+  //document.getElementById('start').style.color = "#37dd31"
   //winner (p1,p2);
 }
 };
@@ -305,6 +321,7 @@ function reset () {
   
   //localStorage.removeItem('player')
   //localStorage.removeItem('names')
+  gamePlaying = false
   player = [{
     name: '',
     health: 100,
@@ -314,8 +331,17 @@ function reset () {
       health: 100,
       striked: false
     }];
+
     nameSection.hidden = false;
     document.body.style.backgroundImage ="none"
+    p1Image.classList.add('image1')
+    p2Image.classList.add('image2')
+    p1Image.innerHTML = ''
+    p2Image.innerHTML = ''
+    p1Image.classList.remove('image1')
+    p2Image.classList.remove('image2')
+    //document.getElementById('start').innerHTML = ''
+    //document.getElementById('start').style.color = "none"
     
 
     p1Name.innerHTML = player[0].name
