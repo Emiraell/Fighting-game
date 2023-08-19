@@ -39,12 +39,29 @@ let player = [{
   }];
 
   let background = [
-    "images/background/fight3.jpeg",
-    "images/background/fight4.jpeg",
-    "images/background/fight2.jpg",
-    "images/background/fight1.jpg",
-    "images/background/fight6.gif",
-    "images/background/fight5.jpeg"
+    "images/backgrounds/background1.gif",
+    "images/backgrounds/background2.gif",
+    "images/backgrounds/background3.gif",
+    "images/backgrounds/background4.gif",
+    "images/backgrounds/background5.gif",
+    "images/backgrounds/background6.gif",
+    "images/backgrounds/background7.gif",
+    "images/backgrounds/background8.gif",
+    "images/backgrounds/background9.gif"
+  ];
+
+  let p1Fighters = [
+    "images/fighters/fighter3.gif",
+    "images/fighters/fighter4.gif",
+    "images/fighters/fighter5.gif",
+    "images/fighters/fighter7.gif",
+  ];
+
+  let p2Fighters = [
+    "images/fighters/fighter1.gif",
+    "images/fighters/fighter2.gif",
+    "images/fighters/fighter6.gif",
+    "images/fighters/fighter8.gif",
   ]
   //forEach((element) => {
     //console.log(element)
