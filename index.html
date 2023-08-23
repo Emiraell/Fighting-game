@@ -45,7 +45,7 @@
         <div class="verticalBtn"> <button id="p1Attack" onclick=" strike (p1, p2)"> W: <br> Strike</button> </div>
         <div class="horizontalBtn">
           <button id="p1Heal" onclick=" heal (p1)"> A: <br> Heal</button>
-          <button id="p1defend" onclick=" defend (p2, p1)"> D: <br> Defend</button>
+          <button id="p1defend" onclick=" defend (p1)"> D: <br> Defend</button>
         </div>
         <div class="verticalBtn"><button id="p1Super" onclick=" superStrike (p1, p2)"> Z: <br> sStrike</button> </div>
       </div>
@@ -58,7 +58,7 @@
         <div class="verticalBtn"> <button id="p2Attack" onclick=" strike (p2, p1)"> I: <br> Strike </button> </div>
         <div class="horizontalBtn">
           <button id="p2heal" onclick=" heal (p2)"> J: <br> Heal </button>
-          <button id="p2defend" onclick=" defend (p1, p2)"> k: <br> Defend </button>
+          <button id="p2defend" onclick=" defend (p2)"> k: <br> Defend </button>
         </div>
         <div class="verticalBtn">
           <button id="p2Super" onclick=" superStrike (p2, p1)"> M: <br> sStrike </button>
@@ -82,12 +82,13 @@
     <audio id="strikeSound2" src="sounds/strike2.mp3"></audio>
     <audio id="healSound1" src="sounds/heal1.mp3"></audio>
     <audio id="healSound2" src="sounds/heal2.mp3"></audio>
-    <audio id="superStrike1Sound" src="sounds/superStrike1.mp3"></audio>
-    <audio id="superStrike2sound" src="sounds/superStrike2.mp3"></audio>
+    <audio id="superStrikeSound1" src="sounds/superStrike1.mp3"></audio>
+    <audio id="superStrikeSound2" src="sounds/superStrike2.mp3"></audio>
     <audio id="defendSound1" src="sounds/defend1.mp3"></audio>
     <audio id="defendSound2" src="sounds/defend2.mp3"></audio>
   </div>
   
   <script src="scripts/script.js"></script>
+  <script src="scripts/fight.js"></script>
 </body>
 </html>
