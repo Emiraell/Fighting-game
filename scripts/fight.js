@@ -16,35 +16,65 @@ const strike = (attacker, enemy) => {
       enemy.health -= damage;
       enemy.striked = true;
       damaged = true;
+      superDamaged = false
+      healed = false
       //make sure enemy's health never goes below zero
       if (enemy.health < 0) {
         enemy.health = 0;
       }
-      
-      if (enemy === p1) {
+      styleHealth (enemy);
+      /*if (enemy === p1) {
         p1Power.style.color = "red"
         document.getElementById('strikeSound1').play();
       } else {
         p2Power.style.color = "red"
         document.getElementById('strikeSound2').play();
-      }
+      }*/
       renderGame (p1,p2)
     }
 
-  healed = false
+  
   
   }
   return damaged;
 };
 
 const styleHealth = (player) => {
-  if (player === p1 && superDamaged === true) {
-    p1Power.style.color = "red";
-    document.getElementById('superStrikeSound1').play();
+
+  /*if (p1 === player) {
+    p1Power.style.color = "green"
+    document.getElementById('defendSound1').play();
   } else {
-    p2Power.style.color = "red";
+    p2Power.style.color = "green"
+    document.getElementById('defendSound2').play();
+  };*/
+
+  if (player === p1 && damaged === true && superDamaged === false && healed == false) {
+    p1Power.style.color = "red"
+    document.getElementById('strikeSound1').play();
+  } else if (player === p2 && damaged === true && superDamaged === false && healed == false) {
+    p2Power.style.color = "red"
+    document.getElementById('strikeSound2').play();
+  } else if (player === p1 && superDamaged === true && damaged === false && healed == false) {
+    p1Power.style.color = "orange";
+    document.getElementById('superStrikeSound1').play();
+  } else if (player === p2 && superDamaged === true && damaged === false && healed == false) {
+    p2Power.style.color = "orange";
     document.getElementById('superStrikeSound2').play();
+  } else if (p1 === player && healed === true) {
+    p1Power.style.color = "blue"
+    document.getElementById('healSound1').play();
+  } else if (p2 === player && healed === true) {
+    p2Power.style.color = "blue"
+    document.getElementById('healSound2').play();
+  } else if (p1 === player) {
+    p1Power.style.color = "green"
+    document.getElementById('defendSound1').play();
+  } else if (p2 === player) {
+    p2Power.style.color = "green"
+    document.getElementById('defendSound2').play();
   }
+  
 }
 //Super strike to inflict heavier damage on opponent
 let superDamageAmt = 0;
@@ -64,21 +94,23 @@ const superStrike = (attacker, enemy) => {
       enemy.health -= superStrikeAmt;
       enemy.striked = true;
       superDamaged = true;
+      damaged = false
+      healed = false;
 
       if (enemy.health < 0) {
         enemy.health = 0;
       }
-
-      if (p1 === enemy) {
+      styleHealth (enemy)
+     /* if (p1 === enemy) {
         p1Power.style.color = "red";
         document.getElementById('superStrikeSound1').play();
       } else {
         p2Power.style.color = "red";
         document.getElementById('superStrikeSound2').play();
-      }
+      }*/
       renderGame (p1, p2);
     }
-  healed = false;
+  
   
   return superDamaged;
   }
@@ -94,49 +126,55 @@ const defend = (defender) => {
     defender.health += damageAmt;
     damaged = false;
     defender.striked = false;
-
-    if (p1 === defender) {
+    healed = false
+    styleHealth (defender)
+    /*if (p1 === defender) {
       p1Power.style.color = "green"
       document.getElementById('defendSound1').play();
     } else {
       p2Power.style.color = "green"
       document.getElementById('defendSound2').play();
-    }
+    }*/
   } else if (defender.striked === true && superDamaged === true && healed === false) {
     //recover the last amount if defender was super striked
     defender.health += superDamageAmt;
     superDamaged = false;
     defender.striked = false;
-    
-    if (p1 === defender) {
+    healed = false
+    styleHealth(defender)
+    /*if (p1 === defender) {
       p1Power.style.color = "green"
       document.getElementById('defendSound1').play();
     } else {
       p2Power.style.color = "green"
       document.getElementById('defendSound2').play();
-    }
+    }*/
   }
   renderGame (p1,p2);
 };
 
 //player recover a significant health after being striked
-const heal = (player) => {
+const heal = (healer) => {
 
   let recoverAmt = Math.ceil(Math.random () * 8);
   //player recover an amount of health between  1-8
-  player.health += recoverAmt;
+  healer.health += recoverAmt;
   healed = true;
-  if (p1 === player) {
+  superDamaged = false
+  damaged = false
+  
+  styleHealth(healer)
+  /*if (p1 === player) {
     p1Power.style.color = "blue"
     document.getElementById('healSound1').play();
   } else {
     p2Power.style.color = "blue"
     document.getElementById('healSound2').play();
-  }
+  }*/
 
-  if (player.health > 100) {
+  if (healer.health > 100) {
     //keeps player health below 100
-    player.health = 100;
+    healer.health = 100;
   }
   renderGame (p1,p2);
 };
