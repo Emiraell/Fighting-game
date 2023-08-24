@@ -190,5 +190,8 @@ function renderGame (player1, player2) {
       document.getElementById('start').style.color = "#1db91d"
       document.getElementById('victorySound').play();
     }
+    setTimeout (() => {
+      reset ();
+    },4000)
   }
 };
