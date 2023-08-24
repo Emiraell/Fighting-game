@@ -25,7 +25,7 @@ let gamePlaying = true;
 let healed = false;
 let gottenPlayerNames = false
 
-let player = [{
+let playerInfo = [{
   name: '',
   health: 100,
   striked: false
@@ -35,8 +35,8 @@ let player = [{
     striked: false
   }];
 
-  let p1 = player[0];
-  let p2 = player[1];
+  let p1 = playerInfo[0];
+  let p2 = playerInfo[1];
   
   //fighter images
   let p1Fighters = [

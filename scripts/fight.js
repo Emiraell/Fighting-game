@@ -189,7 +189,51 @@ const heal = (healer) => {
 
 //reset entire game at any point in the game
 function reset () {
-  playerIndicator.hidden = true;
+
+playerIndicator.hidden = true;
+playerIndicator.classList.remove('nameTittle');
+nameIndicator.classList.remove('namesDiv');
+p1Image.classList.remove('image1');
+p2Image.classList.remove('image2');
+p1Image.innerHTML = ''
+p2Image.innerHTML = ''
+nameHeader.innerHTML = 'Player One'
+nameSection.hidden = false;
+document.getElementById('start').innerHTML = '';
+document.body.style.backgroundImage = "none"
+document.body.style.backgroundSize = "none"
+gottenPlayerNames = false
+
+playerInfo = [{
+  name: '',
+  health: 100,
+  striked: false
+}, {
+    name: '',
+    health: 100,
+    striked: false
+  }];
+
+  p1 = playerInfo[0];
+  p2 = playerInfo[1];
+
+  p1Name.innerHTML = p1.name;
+  p2Name.innerHTML = p2.name;
+  p1Power.innerHTML = '';
+  p2Power.innerHTML = '';
+
+damageAmt = 0;
+damaged = false
+superDamageAmt = 0;
+superDamaged = false;
+gamePlaying = false;
+healed = false
+p1Power.style.color = "white"
+p2Power.style.color = "white"
+
+  
+
+ /* playerIndicator.hidden = true;
   playerIndicator.classList.remove('nameTittle')
   nameIndicator.classList.remove('namesDiv')
 
@@ -215,7 +259,7 @@ function reset () {
     p1Name.innerHTML = player[0].name
     p2Name.innerHTML = player[1].name
     p1Power.innerHTML = ''
-    p2Power.innerHTML = ''
+    p2Power.innerHTML = ''*/
 };
 
 //player one controls
@@ -268,4 +312,4 @@ document.addEventListener('keydown', (events) => {
     defend (p2);
     p2Power.style.color = "green";
   }
-});
+})
