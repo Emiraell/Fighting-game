@@ -53,12 +53,11 @@ input {
   height: 34px;
   border-radius: 7px;
   border: none;
-  background-color: #756217;
+  background-color: #9e8729;
   color: white;
 }
 
 .fightDiv {
-  color: #dd2b2b;
   font-size: 25px;
 }
 

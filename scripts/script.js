@@ -146,20 +146,21 @@ function getPlayerNames () {
 const startGame =  () => {
 
   nameSection.hidden = true;
-  document.getElementById('startSound').play();
   document.getElementById('rules').innerHTML = '';
   document.getElementById('ruleSec').hidden = true;
   setTimeout (() => {
     document.getElementById('start').innerHTML = 'FIGHT!!!!!';
+    document.getElementById('start').style.color ="#dd2b2b"
+    document.getElementById('startSound').play();
+
+    //pick a fighting background at random
+    let backgroundValue = Math.floor(Math.random() * background.length);
+    document.body.style.backgroundImage = `url(${background[backgroundValue]})`;
+    document.body.style.backgroundSize = "cover";
+    gottenPlayerNames = true;
 
     setTimeout (() => {
       document.getElementById('start').innerHTML = '';
-
-      //pick a fighting background at random
-      let backgroundValue = Math.floor(Math.random() * background.length);
-      document.body.style.backgroundImage = `url(${background[backgroundValue]})`;
-      document.body.style.backgroundSize = "cover";
-      gottenPlayerNames = true;
     }, 2000);
   }, 1000);
 }; 
@@ -178,15 +179,15 @@ function renderGame (player1, player2) {
     //declare winner if game is not playing
     if (player2.health < 1) {
       document.getElementById('start').innerHTML = `${player1.name} wins`;
-      document.getElementById('start').style.color = "green";
+      document.getElementById('start').style.color = "#1db91d";
       document.getElementById('victorySound').play();
     } else if  (player1.health < 1) {
       document.getElementById('start').innerHTML = `${player2.name} wins`;
-      document.getElementById('start').style.color = "green";
+      document.getElementById('start').style.color = "#1db91d";
       document.getElementById('victorySound').play();
     } else {
       document.getElementById('start').innerHTML = `TIE`;
-      document.getElementById('start').style.color = "green"
+      document.getElementById('start').style.color = "#1db91d"
       document.getElementById('victorySound').play();
     }
   }

@@ -34,28 +34,28 @@ const strike = (attacker, enemy) => {
 const styleHealth = (player) => {
 
   if (player === p1 && damaged === true && superDamaged === false && healed == false) {
-    p1Power.style.color = "red";
+    p1Power.style.color = "#de2020";
     document.getElementById('strikeSound1').play();
   } else if (player === p2 && damaged === true && superDamaged === false && healed == false) {
-    p2Power.style.color = "red";
+    p2Power.style.color = "#de2020";
     document.getElementById('strikeSound2').play();
   } else if (player === p1 && superDamaged === true && damaged === false && healed == false) {
-    p1Power.style.color = "orange";
+    p1Power.style.color = "#db9a21";
     document.getElementById('superStrikeSound1').play();
   } else if (player === p2 && superDamaged === true && damaged === false && healed == false) {
-    p2Power.style.color = "orange";
+    p2Power.style.color = "#db9a21";
     document.getElementById('superStrikeSound2').play();
   } else if (p1 === player && healed === true) {
-    p1Power.style.color = "blue";
+    p1Power.style.color = "#2a2ae2";
     document.getElementById('healSound1').play();
   } else if (p2 === player && healed === true) {
-    p2Power.style.color = "blue";
+    p2Power.style.color = "#2a2ae2";
     document.getElementById('healSound2').play();
   } else if (p1 === player) {
-    p1Power.style.color = "green";
+    p1Power.style.color = "#0a6e0a";
     document.getElementById('defendSound1').play();
   } else if (p2 === player) {
-    p2Power.style.color = "green";
+    p2Power.style.color = "#0a6e0a";
     document.getElementById('defendSound2').play();
   }
 };
