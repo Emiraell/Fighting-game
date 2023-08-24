@@ -103,6 +103,7 @@ const defend = (defender) => {
     defender.striked = false;
     healed = false;
     styleHealth (defender);
+    renderGame (p1,p2);
   } else if (defender.striked === true && superDamaged === true && healed === false) {
     //recover the last amount if defender was super striked
     defender.health += superDamageAmt;
@@ -110,8 +111,8 @@ const defend = (defender) => {
     defender.striked = false;
     healed = false;
     styleHealth (defender);
+    renderGame (p1,p2);
   }
-  renderGame (p1,p2);
 };
 
 //player recover a significant health after taking a hit
@@ -119,7 +120,7 @@ const heal = (healer) => {
 
   let recoverAmt = Math.ceil(Math.random () * 8);
   //player recover an amount of health between  1-8
-  if (healer.health > 0) {
+  if (healer.health > 0 && healer.health !== 100 && gamePlaying != false) {
   healer.health += recoverAmt;
   healed = true;
   superDamaged = false;
@@ -130,8 +131,8 @@ const heal = (healer) => {
       healer.health = 100;
     }
     styleHealth(healer);
+    renderGame (p1,p2);
   }
-  renderGame (p1,p2);
 };
 
 //reset entire game at any point in the game

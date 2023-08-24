@@ -179,12 +179,15 @@ function renderGame (player1, player2) {
     if (player2.health < 1) {
       document.getElementById('start').innerHTML = `${player1.name} wins`;
       document.getElementById('start').style.color = "green";
+      document.getElementById('victorySound').play();
     } else if  (player1.health < 1) {
       document.getElementById('start').innerHTML = `${player2.name} wins`;
       document.getElementById('start').style.color = "green";
+      document.getElementById('victorySound').play();
     } else {
       document.getElementById('start').innerHTML = `TIE`;
       document.getElementById('start').style.color = "green"
+      document.getElementById('victorySound').play();
     }
   }
 };
