@@ -21,7 +21,7 @@ header, .nameTittle, .namesDiv{
   display: flex;
 }
 
-.nameHead, .nameInp, .nameTittle,.namesDiv,.p1Btns, .p2Btns {
+.nameHead, .nameInp, .nameTittle,.namesDiv,.p1Btns, .p2Btns, ul {
   padding-top: 5px;
 }
 

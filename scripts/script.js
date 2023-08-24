@@ -67,9 +67,9 @@ let background = [
 const rules = () => {
   let rules = [ 
     "Game cannot be accessed without player names",
-    "Users can click to enter dafualt names for both players",
+    "Users can click enter button to enter dafualt names for both players",
     "Game ends when either of the player's health hits zero(0)",
-    "Users can also use the keys/alphabet on their keyboard to play the game",
+    "Users can also use the keys/alphabet indicated on the buttons on their keyboard to play the game",
     "Strike inflicts damage of 1-10 on enemy's health",
     "Super Strike(sStrike) inflicts damage of 1-10 on enemy's health",
     "Heal allows player to recover an amount between 1-8",
@@ -81,7 +81,7 @@ const rules = () => {
   if (document.getElementById('rules').innerHTML === '') {
     rules.forEach((rule) => {
       document.getElementById('rules').innerHTML += `
-       <li>${rule} <li> `
+       <ul>${rule} <ul> `
     })
   } else {
     document.getElementById('rules').innerHTML = ''
