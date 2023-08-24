@@ -140,14 +140,17 @@ playerIndicator.classList.remove('nameTittle');
 nameIndicator.classList.remove('namesDiv');
 p1Image.classList.remove('image1');
 p2Image.classList.remove('image2');
-p1Image.innerHTML = ''
-p2Image.innerHTML = ''
-nameHeader.innerHTML = 'Player One'
+p1Image.innerHTML = '';
+p2Image.innerHTML = '';
+nameHeader.innerHTML = 'Player One';
 nameSection.hidden = false;
 document.getElementById('start').innerHTML = '';
-document.body.style.backgroundImage = "none"
-document.body.style.backgroundSize = "none"
-gottenPlayerNames = false
+document.body.style.backgroundImage = "none";
+document.body.style.backgroundSize = "none";
+document.getElementById('rules').innerHTML = '';
+document.getElementById('ruleSec').hidden = false;
+p1Power.style.color = "white";
+p2Power.style.color = "white";
 
 playerInfo = [{
   name: '',
@@ -168,13 +171,12 @@ playerInfo = [{
   p2Power.innerHTML = '';
 
 damageAmt = 0;
-damaged = false
+damaged = false;
 superDamageAmt = 0;
 superDamaged = false;
 gamePlaying = false;
-healed = false
-p1Power.style.color = "white"
-p2Power.style.color = "white"
+healed = false;
+gottenPlayerNames = false;
 };
 
 //player one controls
