@@ -7,12 +7,24 @@
   <link rel="stylesheet" href="styles/player.css">
 </head>
 <body>
+  <!--Game tittle section-->
   <header>
     <h3 id="gameTittle" class="gameTittle js-gameTittle">
       FIGHTING GAME
     </h3>
   </header>
   
+  <!--Game rules section-->
+  <section id="ruleSec" class="ruleSec js-ruleSec">
+    <div id="clickRules" class="rulesDiv js-clickRules"> 
+      click to read game <span id="gameRules" onclick="rules ();">rule</span>
+      <div class="rules">
+        <ul id="rules"></ul>
+      </div>
+    </div>
+  </section>
+  
+  <!--Get player names section-->
   <section id="nameSection" class="nameSec js-nameSec">
     <div id = "nameGetter" class="getNames js-getNames">
       <div id="nameHeader" class="nameHead js-nameHead">
@@ -22,6 +34,7 @@
       <button id="nameBtn" onclick="getPlayerNames ()" class="enterBtn js-enterBtn">Enter</button>
     </div>
 
+    <!--Player names section-->
     <div id="playerNames" class="playerNameDiv js-playerNameDiv">
       <div id="playerIndicator" class="nameTittle js-nameTittle">
         <div id="p1Header" class="playerOne js-playerOne"> player One </div>
@@ -34,9 +47,10 @@
     </div>
   </section>
 
-  
+  <!--Start and end game section-->
   <div id="start" class="fightDiv js-fight"></div>
 
+  <!--player one section-->
   <section id="gameSection" class="gameSec js-game">
     <div id="p1Sec" class="p1Div js-p1Div">
       <div id="p1Power" class="p1Strength js-p1Strenght"></div>
@@ -51,6 +65,7 @@
       </div>
     </div>
 
+    <!--player two section-->
     <div id="p2Sec" class="p2Div js-p2Div">
       <div id="p2Power" class="p2Strength js-p2Strength"></div>
       <div id="p2Image" class="image2 js-p2Image"></div>
@@ -68,14 +83,16 @@
     </div>
   </section>
 
-  <section id="outcomeSection">
-    <div id="outcome">
-      <button id="reset" class="resetBtn js-resetBtn" onclick="reset ()">
-        Reset
-      </button>
-    </div>
-  </section>
+  <button id="reset" class="resetBtn js-resetBtn" onclick="reset ()">
+    Reset
+  </button>
 
+  <!--game author-->
+  <div id="Codeauthor">
+    <p style="padding: 10px 0 0 120px;">Author: <a href="">emirael</a></p>
+  </div>
+
+  <!--Game audios-->
   <div id="audios"> 
     <audio id="startSound" src="sounds/start.mp3"></audio>
     <audio id="strikeSound1" src="sounds/strike1.mp3"></audio>
@@ -88,6 +105,7 @@
     <audio id="defendSound2" src="sounds/defend2.mp3"></audio>
   </div>
   
+  <!--javascript files-->
   <script src="scripts/script.js"></script>
   <script src="scripts/fight.js"></script>
 </body>

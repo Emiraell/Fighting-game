@@ -4,7 +4,6 @@
 }
 
 body {
-  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -12,10 +11,10 @@ body {
   color: #f5f9f9;
   font-family: arial;
 };
-header{
+header, .nameTittle, .namesDiv{
   margin: 15px 0;
 }
-.gameSec, .nameTittle, .namesDiv {
+.gameSec, .nameTittle, .namesDiv, body {
   display: flex;
 }
 
@@ -28,7 +27,6 @@ header{
 .nameTittle, .namesDiv {
   width: 200px;
   justify-content: space-between;
-  margin: 15px 0;
 }
 .nameTittle {
   border-bottom: 1px solid #a69574;
@@ -38,14 +36,14 @@ input {
   width: 130px;
   padding: 5px;
   height: 23px;
-  border-radius: 20px;
+  border-radius: 7px;
   border: 1px solid transparent;
 }
 .enterBtn {
   margin-left: -2px;
   width: 55px;
   height: 34px;
-  border-radius: 15px;
+  border-radius: 7px;
   border: none;
   background-color: #756217;
   color: white;
@@ -61,6 +59,20 @@ input {
 }
 h3 {
   padding: 20px 0;
+}
+
+ul, .rulesDiv {
+  width: 250px;
+  font-size: 10px;
+  font-style: italic;
+  padding-left: 10px;
+}
+.rules {
+  padding-top: 10px;
+}
+span {
+  cursor: pointer;
+  color: #20b5b5;
 }
 .gameSec{
   padding-top: 20px;

@@ -1,7 +1,7 @@
 //Divs needed for the entire game
 let p1Power = document.getElementById('p1Power');
 let p2Power = document.getElementById('p2Power');
-let nameInput = document.getElementById('nameInputut');
+let nameInput = document.getElementById('nameInput');
 let nameEnter = document.getElementById('nameBtn');
 let nameHeader = document.getElementById('nameHeader');
 let p1Name = document.getElementById('p1Name');
@@ -64,7 +64,30 @@ let background = [
   "images/backgrounds/background9.gif"
 ];
 
+const rules = () => {
+  let rules = [ 
+    "Game cannot be accessed without player names",
+    "Users can click to enter dafualt names for both players",
+    "Game ends when either of the player's health hits zero(0)",
+    "Users can also use the keys/alphabet on their keyboard to play the game",
+    "Strike inflicts damage of 1-10 on enemy's health",
+    "Super Strike(sStrike) inflicts damage of 1-10 on enemy's health",
+    "Heal allows player to recover an amount between 1-8",
+    "Defend allows only the player to take a hit to recover the their last health",
+    "Players can only defend once and can't defend after healing",
+    "Reset can be used at any point in the game to reset the game"
+  ];
 
+  if (document.getElementById('rules').innerHTML === '') {
+    rules.forEach((rule) => {
+      document.getElementById('rules').innerHTML += `
+       <li>${rule} <li> `
+    })
+  } else {
+    document.getElementById('rules').innerHTML = ''
+  }
+  
+}
 //Get player names, save and display them
 function getPlayerNames () {
   playerIndicator.hidden = false;
@@ -124,6 +147,8 @@ const startGame =  () => {
 
   nameSection.hidden = true;
   document.getElementById('startSound').play();
+  document.getElementById('rules').innerHTML = '';
+  document.getElementById('ruleSec').hidden = true;
   setTimeout (() => {
     document.getElementById('start').innerHTML = 'FIGHT!!!!!';
 
