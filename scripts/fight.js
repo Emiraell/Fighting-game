@@ -119,16 +119,18 @@ const heal = (healer) => {
 
   let recoverAmt = Math.ceil(Math.random () * 8);
   //player recover an amount of health between  1-8
+  if (healer.health > 0) {
   healer.health += recoverAmt;
   healed = true;
   superDamaged = false;
   damaged = false;
 
-  if (healer.health > 100) {
-    //keeps player health below 100
-    healer.health = 100;
+    if (healer.health > 100) {
+      //keeps player health below 100
+      healer.health = 100;
+    }
+    styleHealth(healer);
   }
-  styleHealth(healer);
   renderGame (p1,p2);
 };
 
@@ -145,6 +147,7 @@ p2Image.innerHTML = '';
 nameHeader.innerHTML = 'Player One';
 nameSection.hidden = false;
 document.getElementById('start').innerHTML = '';
+document.getElementById('start').style.color = "white"
 document.body.style.backgroundImage = "none";
 document.body.style.backgroundSize = "none";
 document.getElementById('rules').innerHTML = '';

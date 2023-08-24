@@ -178,10 +178,13 @@ function renderGame (player1, player2) {
     //declare winner if game is not playing
     if (player2.health < 1) {
       document.getElementById('start').innerHTML = `${player1.name} wins`;
+      document.getElementById('start').style.color = "green";
     } else if  (player1.health < 1) {
       document.getElementById('start').innerHTML = `${player2.name} wins`;
+      document.getElementById('start').style.color = "green";
     } else {
       document.getElementById('start').innerHTML = `TIE`;
+      document.getElementById('start').style.color = "green"
     }
   }
 };
